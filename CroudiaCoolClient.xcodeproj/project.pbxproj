@@ -14,6 +14,8 @@
 		5EBFD3731B4550180023C881 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EBFD3721B4550180023C881 /* Images.xcassets */; };
 		5EBFD3761B4550180023C881 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBFD3741B4550180023C881 /* LaunchScreen.xib */; };
 		5EBFD3821B4550180023C881 /* CroudiaCoolClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD3811B4550180023C881 /* CroudiaCoolClientTests.m */; };
+		5EBFD38F1B4551200023C881 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD38E1B4551200023C881 /* User.m */; };
+		5EBFD3921B45512D0023C881 /* Communicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD3911B45512D0023C881 /* Communicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30562C081B1391D0B6E50F1F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5EBFD3621B4550180023C881 /* CroudiaCoolClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CroudiaCoolClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EBFD3661B4550180023C881 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EBFD3671B4550180023C881 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +43,14 @@
 		5EBFD37B1B4550180023C881 /* CroudiaCoolClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CroudiaCoolClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EBFD3801B4550180023C881 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EBFD3811B4550180023C881 /* CroudiaCoolClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CroudiaCoolClientTests.m; sourceTree = "<group>"; };
+		5EBFD38D1B4551200023C881 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../../CroudiaCool/CroudiaCool/User.h; sourceTree = "<group>"; };
+		5EBFD38E1B4551200023C881 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../../CroudiaCool/CroudiaCool/User.m; sourceTree = "<group>"; };
+		5EBFD3901B45512D0023C881 /* Communicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Communicator.h; sourceTree = "<group>"; };
+		5EBFD3911B45512D0023C881 /* Communicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Communicator.m; sourceTree = "<group>"; };
+		5EBFD3931B4551360023C881 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		5EBFD3941B45519B0023C881 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		9AD6F276775615DC4873144E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F62834E5F5A8C4085F723C01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +77,8 @@
 				5EBFD3641B4550180023C881 /* CroudiaCoolClient */,
 				5EBFD37E1B4550180023C881 /* CroudiaCoolClientTests */,
 				5EBFD3631B4550180023C881 /* Products */,
+				9B650F701BE0C09D6BD670BF /* Pods */,
+				734F4AB8EBC820DA0991957E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +94,9 @@
 		5EBFD3641B4550180023C881 /* CroudiaCoolClient */ = {
 			isa = PBXGroup;
 			children = (
+				5EBFD3931B4551360023C881 /* Config.h */,
+				5EBFD38C1B4550F50023C881 /* Classes */,
+				5EBFD38B1B4550EC0023C881 /* Models */,
 				5EBFD3691B4550180023C881 /* AppDelegate.h */,
 				5EBFD36A1B4550180023C881 /* AppDelegate.m */,
 				5EBFD36C1B4550180023C881 /* ViewController.h */,
@@ -119,6 +135,42 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5EBFD38B1B4550EC0023C881 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5EBFD38D1B4551200023C881 /* User.h */,
+				5EBFD38E1B4551200023C881 /* User.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		5EBFD38C1B4550F50023C881 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5EBFD3901B45512D0023C881 /* Communicator.h */,
+				5EBFD3911B45512D0023C881 /* Communicator.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		734F4AB8EBC820DA0991957E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EBFD3941B45519B0023C881 /* libPods-AFNetworking.a */,
+				F62834E5F5A8C4085F723C01 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B650F701BE0C09D6BD670BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30562C081B1391D0B6E50F1F /* Pods.debug.xcconfig */,
+				9AD6F276775615DC4873144E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EBFD3851B4550180023C881 /* Build configuration list for PBXNativeTarget "CroudiaCoolClient" */;
 			buildPhases = (
+				0C08EC256D4F0DEB74F87696 /* Check Pods Manifest.lock */,
 				5EBFD35E1B4550180023C881 /* Sources */,
 				5EBFD35F1B4550180023C881 /* Frameworks */,
 				5EBFD3601B4550180023C881 /* Resources */,
+				20BA9326895340B22E0845EE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,14 +268,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0C08EC256D4F0DEB74F87696 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		20BA9326895340B22E0845EE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5EBFD35E1B4550180023C881 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EBFD38F1B4551200023C881 /* User.m in Sources */,
 				5EBFD36E1B4550180023C881 /* ViewController.m in Sources */,
 				5EBFD36B1B4550180023C881 /* AppDelegate.m in Sources */,
 				5EBFD3681B4550180023C881 /* main.m in Sources */,
+				5EBFD3921B45512D0023C881 /* Communicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,20 +434,30 @@
 		};
 		5EBFD3861B4550180023C881 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30562C081B1391D0B6E50F1F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CroudiaCoolClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		5EBFD3871B4550180023C881 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AD6F276775615DC4873144E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CroudiaCoolClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -416,6 +515,7 @@
 				5EBFD3871B4550180023C881 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EBFD3881B4550180023C881 /* Build configuration list for PBXNativeTarget "CroudiaCoolClientTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +524,7 @@
 				5EBFD38A1B4550180023C881 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

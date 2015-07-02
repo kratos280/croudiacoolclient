@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Communicator.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    Communicator *communicator = [[Communicator alloc] init];
+    [communicator getTimeLine];
     return YES;
 }
 
