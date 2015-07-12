@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Communicator.h"
+#import "CroudiaManager.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +17,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    Communicator *communicator = [[Communicator alloc] init];
-    [communicator getTimeLine];
     return YES;
 }
 

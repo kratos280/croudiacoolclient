@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Config.h"
+#import "Global.h"
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "CommunicatorDelegate.h"
 
 @interface Communicator : NSObject
 
+@property (strong, nonatomic) id<CommunicatorDelegate> delegate;
 @property (strong, nonatomic) NSString *baseURL;
 
-- (void)getTimeLine;
+- (void)requestAccessTokenURL;
+- (void)fetchTimeLine;
 
 @end

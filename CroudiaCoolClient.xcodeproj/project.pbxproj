@@ -7,26 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1360406EA303E93337D5C206 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F62834E5F5A8C4085F723C01 /* libPods.a */; };
 		5EBFD3681B4550180023C881 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD3671B4550180023C881 /* main.m */; };
 		5EBFD36B1B4550180023C881 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD36A1B4550180023C881 /* AppDelegate.m */; };
 		5EBFD36E1B4550180023C881 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD36D1B4550180023C881 /* ViewController.m */; };
 		5EBFD3711B4550180023C881 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EBFD36F1B4550180023C881 /* Main.storyboard */; };
 		5EBFD3731B4550180023C881 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EBFD3721B4550180023C881 /* Images.xcassets */; };
 		5EBFD3761B4550180023C881 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBFD3741B4550180023C881 /* LaunchScreen.xib */; };
-		5EBFD3821B4550180023C881 /* CroudiaCoolClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD3811B4550180023C881 /* CroudiaCoolClientTests.m */; };
-		5EBFD38F1B4551200023C881 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD38E1B4551200023C881 /* User.m */; };
 		5EBFD3921B45512D0023C881 /* Communicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFD3911B45512D0023C881 /* Communicator.m */; };
+		5EE523E91B51F8680094592D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE523E81B51F8680094592D /* User.m */; };
+		5EE523F31B51FE050094592D /* CroudiaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE523F21B51FE050094592D /* CroudiaManager.m */; };
+		5EE523F91B52087C0094592D /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE523F81B52087C0094592D /* LoginView.m */; };
+		5EE524011B520E450094592D /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE524001B520E450094592D /* Global.m */; };
+		5EE524071B527A7B0094592D /* MainTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE524061B527A7B0094592D /* MainTabBarView.m */; };
+		5EE5240B1B527D1F0094592D /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE5240A1B527D1F0094592D /* Home.png */; };
+		5EE5240D1B527EC40094592D /* Favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE5240C1B527EC40094592D /* Favorite.png */; };
+		5EE524131B5290280094592D /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE524121B5290280094592D /* HomeView.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5EBFD37C1B4550180023C881 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EBFD35A1B4550180023C881 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EBFD3611B4550180023C881;
-			remoteInfo = CroudiaCoolClient;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		30562C081B1391D0B6E50F1F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -40,15 +37,26 @@
 		5EBFD3701B4550180023C881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EBFD3721B4550180023C881 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5EBFD3751B4550180023C881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		5EBFD37B1B4550180023C881 /* CroudiaCoolClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CroudiaCoolClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EBFD3801B4550180023C881 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EBFD3811B4550180023C881 /* CroudiaCoolClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CroudiaCoolClientTests.m; sourceTree = "<group>"; };
-		5EBFD38D1B4551200023C881 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../../CroudiaCool/CroudiaCool/User.h; sourceTree = "<group>"; };
-		5EBFD38E1B4551200023C881 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../../CroudiaCool/CroudiaCool/User.m; sourceTree = "<group>"; };
 		5EBFD3901B45512D0023C881 /* Communicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Communicator.h; sourceTree = "<group>"; };
 		5EBFD3911B45512D0023C881 /* Communicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Communicator.m; sourceTree = "<group>"; };
-		5EBFD3931B4551360023C881 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		5EBFD3941B45519B0023C881 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		5EE523E71B51F8680094592D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5EE523E81B51F8680094592D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5EE523F01B51FDA80094592D /* CommunicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicatorDelegate.h; sourceTree = "<group>"; };
+		5EE523F11B51FE050094592D /* CroudiaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CroudiaManager.h; sourceTree = "<group>"; };
+		5EE523F21B51FE050094592D /* CroudiaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CroudiaManager.m; sourceTree = "<group>"; };
+		5EE523F71B52087C0094592D /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		5EE523F81B52087C0094592D /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		5EE523FF1B520E450094592D /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		5EE524001B520E450094592D /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
+		5EE524051B527A7B0094592D /* MainTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarView.h; sourceTree = "<group>"; };
+		5EE524061B527A7B0094592D /* MainTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarView.m; sourceTree = "<group>"; };
+		5EE5240A1B527D1F0094592D /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home.png; sourceTree = "<group>"; };
+		5EE5240C1B527EC40094592D /* Favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favorite.png; sourceTree = "<group>"; };
+		5EE524111B5290280094592D /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeView.h; path = ../HomeView.h; sourceTree = "<group>"; };
+		5EE524121B5290280094592D /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeView.m; path = ../HomeView.m; sourceTree = "<group>"; };
 		9AD6F276775615DC4873144E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F62834E5F5A8C4085F723C01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -58,13 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EBFD3781B4550180023C881 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				1360406EA303E93337D5C206 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				5EBFD3621B4550180023C881 /* CroudiaCoolClient.app */,
-				5EBFD37B1B4550180023C881 /* CroudiaCoolClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,7 +95,9 @@
 		5EBFD3641B4550180023C881 /* CroudiaCoolClient */ = {
 			isa = PBXGroup;
 			children = (
-				5EBFD3931B4551360023C881 /* Config.h */,
+				5EE524111B5290280094592D /* HomeView.h */,
+				5EE524121B5290280094592D /* HomeView.m */,
+				5EE524081B527B7C0094592D /* Assets */,
 				5EBFD38C1B4550F50023C881 /* Classes */,
 				5EBFD38B1B4550EC0023C881 /* Models */,
 				5EBFD3691B4550180023C881 /* AppDelegate.h */,
@@ -105,6 +108,12 @@
 				5EBFD3721B4550180023C881 /* Images.xcassets */,
 				5EBFD3741B4550180023C881 /* LaunchScreen.xib */,
 				5EBFD3651B4550180023C881 /* Supporting Files */,
+				5EE523F71B52087C0094592D /* LoginView.h */,
+				5EE523F81B52087C0094592D /* LoginView.m */,
+				5EE523FF1B520E450094592D /* Global.h */,
+				5EE524001B520E450094592D /* Global.m */,
+				5EE524051B527A7B0094592D /* MainTabBarView.h */,
+				5EE524061B527A7B0094592D /* MainTabBarView.m */,
 			);
 			path = CroudiaCoolClient;
 			sourceTree = "<group>";
@@ -138,8 +147,8 @@
 		5EBFD38B1B4550EC0023C881 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5EBFD38D1B4551200023C881 /* User.h */,
-				5EBFD38E1B4551200023C881 /* User.m */,
+				5EE523E71B51F8680094592D /* User.h */,
+				5EE523E81B51F8680094592D /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -149,8 +158,28 @@
 			children = (
 				5EBFD3901B45512D0023C881 /* Communicator.h */,
 				5EBFD3911B45512D0023C881 /* Communicator.m */,
+				5EE523F01B51FDA80094592D /* CommunicatorDelegate.h */,
+				5EE523F11B51FE050094592D /* CroudiaManager.h */,
+				5EE523F21B51FE050094592D /* CroudiaManager.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		5EE524081B527B7C0094592D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5EE524091B527B860094592D /* Images */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		5EE524091B527B860094592D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5EE5240C1B527EC40094592D /* Favorite.png */,
+				5EE5240A1B527D1F0094592D /* Home.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		734F4AB8EBC820DA0991957E /* Frameworks */ = {
@@ -193,24 +222,6 @@
 			productReference = 5EBFD3621B4550180023C881 /* CroudiaCoolClient.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5EBFD37A1B4550180023C881 /* CroudiaCoolClientTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5EBFD3881B4550180023C881 /* Build configuration list for PBXNativeTarget "CroudiaCoolClientTests" */;
-			buildPhases = (
-				5EBFD3771B4550180023C881 /* Sources */,
-				5EBFD3781B4550180023C881 /* Frameworks */,
-				5EBFD3791B4550180023C881 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5EBFD37D1B4550180023C881 /* PBXTargetDependency */,
-			);
-			name = CroudiaCoolClientTests;
-			productName = CroudiaCoolClientTests;
-			productReference = 5EBFD37B1B4550180023C881 /* CroudiaCoolClientTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -222,10 +233,6 @@
 				TargetAttributes = {
 					5EBFD3611B4550180023C881 = {
 						CreatedOnToolsVersion = 6.3.2;
-					};
-					5EBFD37A1B4550180023C881 = {
-						CreatedOnToolsVersion = 6.3.2;
-						TestTargetID = 5EBFD3611B4550180023C881;
 					};
 				};
 			};
@@ -243,7 +250,6 @@
 			projectRoot = "";
 			targets = (
 				5EBFD3611B4550180023C881 /* CroudiaCoolClient */,
-				5EBFD37A1B4550180023C881 /* CroudiaCoolClientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,15 +260,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EBFD3711B4550180023C881 /* Main.storyboard in Resources */,
+				5EE5240D1B527EC40094592D /* Favorite.png in Resources */,
+				5EE5240B1B527D1F0094592D /* Home.png in Resources */,
 				5EBFD3761B4550180023C881 /* LaunchScreen.xib in Resources */,
 				5EBFD3731B4550180023C881 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EBFD3791B4550180023C881 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,31 +307,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EBFD38F1B4551200023C881 /* User.m in Sources */,
+				5EE524071B527A7B0094592D /* MainTabBarView.m in Sources */,
+				5EE523E91B51F8680094592D /* User.m in Sources */,
 				5EBFD36E1B4550180023C881 /* ViewController.m in Sources */,
+				5EE523F91B52087C0094592D /* LoginView.m in Sources */,
 				5EBFD36B1B4550180023C881 /* AppDelegate.m in Sources */,
+				5EE524011B520E450094592D /* Global.m in Sources */,
 				5EBFD3681B4550180023C881 /* main.m in Sources */,
+				5EE524131B5290280094592D /* HomeView.m in Sources */,
 				5EBFD3921B45512D0023C881 /* Communicator.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EBFD3771B4550180023C881 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5EBFD3821B4550180023C881 /* CroudiaCoolClientTests.m in Sources */,
+				5EE523F31B51FE050094592D /* CroudiaManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5EBFD37D1B4550180023C881 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5EBFD3611B4550180023C881 /* CroudiaCoolClient */;
-			targetProxy = 5EBFD37C1B4550180023C881 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5EBFD36F1B4550180023C881 /* Main.storyboard */ = {
@@ -438,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CroudiaCoolClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,46 +444,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CroudiaCoolClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		5EBFD3891B4550180023C881 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CroudiaCoolClientTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CroudiaCoolClient.app/CroudiaCoolClient";
-			};
-			name = Debug;
-		};
-		5EBFD38A1B4550180023C881 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CroudiaCoolClientTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CroudiaCoolClient.app/CroudiaCoolClient";
 			};
 			name = Release;
 		};
@@ -513,15 +471,6 @@
 			buildConfigurations = (
 				5EBFD3861B4550180023C881 /* Debug */,
 				5EBFD3871B4550180023C881 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5EBFD3881B4550180023C881 /* Build configuration list for PBXNativeTarget "CroudiaCoolClientTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5EBFD3891B4550180023C881 /* Debug */,
-				5EBFD38A1B4550180023C881 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
