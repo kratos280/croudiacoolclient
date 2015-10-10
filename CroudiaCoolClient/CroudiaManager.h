@@ -7,14 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Global.h"
 #import "Communicator.h"
 #import "CommunicatorDelegate.h"
+#import "CroudiaManagerDelegate.h"
 
 @interface CroudiaManager : NSObject <CommunicatorDelegate>
 
+@property (strong, nonatomic) id<CroudiaManagerDelegate> delegate;
 @property (strong, nonatomic) Communicator *communicator;
 
-- (void)fetchTimeline;
++ (CroudiaManager*)sharedCroudiaManager;
+
+- (void)fetchTimeline: (NSString*)type;
 - (void)getAccessToken;
+- (void)fetchHomeTimeline;
+- (void)fetchPostDetail: (NSInteger)postId;
+- (void)favorite: (NSInteger)postId isFavorited:(BOOL)isFavorited;
+- (void)follow: (NSInteger)userId isFollowing:(BOOL)isFollowing;
+- (void)fetchUserInfo: (NSInteger)userId;
+- (void)fetchMyInfo;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworkActivityLogger.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

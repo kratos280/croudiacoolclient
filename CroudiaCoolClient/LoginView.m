@@ -10,13 +10,21 @@
 #import "Global.h"
 #import "CroudiaManager.h"
 
+@interface LoginView() {
+    CroudiaManager *_croudiaManager;
+}
+@end
+
 @implementation LoginView
 
 @synthesize webView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    _croudiaManager = [CroudiaManager sharedCroudiaManager];
+    _croudiaManager.delegate = self;
+    
     self.webView.delegate = self;
     NSString *url = [NSString stringWithFormat:@"%@?response_type=code&client_id=%@&state=%@", AUTHORIZE_URL, CONSUMER_KEY, STATE];
     
@@ -38,20 +46,23 @@
         if (code != nil) {
             CODE = code;
             // get access token
-            CroudiaManager *croudManager = [[CroudiaManager alloc] init];
-            [croudManager getAccessToken];
-            
-            [self.webView removeFromSuperview];
-            
-            // goto main tab bar
-            [self performSegueWithIdentifier:@"showMainTabBar" sender:self];
-            
+            [_croudiaManager getAccessToken];
+            if (ACCESS_TOKEN) {
+                [self.webView removeFromSuperview];
+                // goto main tab bar
+                [self performSegueWithIdentifier:@"showMainTabBar" sender:self];
+            }
             return NO;
         } else {
             // TODO handle error
         }
     }
     return YES;
+}
+
+# pragma CroudiaManagerDelegate
+- (void)receivedAccessToken:(NSString *)accessToken {
+    ACCESS_TOKEN = accessToken;
 }
 
 @end

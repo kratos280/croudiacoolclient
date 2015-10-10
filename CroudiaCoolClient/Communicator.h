@@ -18,6 +18,12 @@
 @property (strong, nonatomic) NSString *baseURL;
 
 - (void)requestAccessTokenURL;
-- (void)fetchTimeLine;
+- (void)fetchTimeLine: (NSString*)type;
+- (void)fetchHomeTimeline;
+- (void)fetchPostDetail: (NSInteger)postId;
+- (void)favorite: (NSInteger)postId isFavorited:(BOOL)isFavorited;
+- (void)follow: (NSInteger)userId isFollowing:(BOOL)isFollowing;
+- (void)fetchUserInfo: (NSInteger)userId;
+- (void)fetchMyInfo;
 
 @end

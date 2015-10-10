@@ -1,39 +1,39 @@
 //
-//  HomeView.m
+//  PublicTimelineView.m
 //  CroudiaCoolClient
 //
-//  Created by Tran Ngoc Cuong on 2015/07/12.
+//  Created by Tran Ngoc Cuong on 2015/07/19.
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "HomeView.h"
+#import "PublicTimelineView.h"
 
-@interface HomeView ()
+@interface PublicTimelineView ()
+
 @end
 
-@implementation HomeView
+@implementation PublicTimelineView {
+    MBProgressHUD *hud;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Public";
     [self.loadingHUD show:YES];
-    self.title = @"Home";
-    [self fetchHomeTimeline];
-    
-    [self.refreshControl addTarget:self action:@selector(fetchHomeTimeline) forControlEvents:UIControlEventValueChanged];
+    dispatch_queue_t fetchQueue = dispatch_queue_create("Fetch Queue",NULL);
+    dispatch_async(fetchQueue, ^(void) {
+        [self fetchPublicTimeline];
+    });
+    [self.refreshControl addTarget:self action:@selector(fetchPublicTimeline) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)fetchHomeTimeline {
+- (void)fetchPublicTimeline {
     if (![Helper isConnectedInternet]) {
         [self showWarningAlert:@"No Internet Connection"];
         [self.refreshControl endRefreshing];
         return;
     }
-    [self.croudiaManager fetchTimeline:@"Home"];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.croudiaManager fetchTimeline:@"Public"];
 }
 
 - (void)receivedTimelinePosts:(NSArray *)posts type:(NSString *)type {
@@ -46,11 +46,13 @@
     }
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 #pragma mark - Table view data source
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"showPostDetail" sender:self];
-}
 
 /*
 // Override to support conditional editing of the table view.
@@ -86,18 +88,6 @@
 }
 */
 
-
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([[segue identifier] isEqualToString:@"showPostDetail"]) {
-//        PostDetailView *postDetailView = [segue destinationViewController];
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        Post *post = [self.posts objectAtIndex:indexPath.row];
-//        postDetailView.post = post;
-//    }
-//}
-
 
 @end

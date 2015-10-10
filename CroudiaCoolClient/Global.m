@@ -10,3 +10,4 @@
 
 NSString *ACCESS_TOKEN;
 NSString *CODE;
+NSString *test;

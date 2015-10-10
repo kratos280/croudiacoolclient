@@ -18,3 +18,10 @@
 
 extern NSString *ACCESS_TOKEN;
 extern NSString *CODE;
+extern NSString *test;
+
+typedef enum {
+    Home,
+    Public
+}TimelineType;
+

@@ -10,8 +10,12 @@
 
 @protocol CommunicatorDelegate <NSObject>
 
-- (void)receivedTimelineJSON;
 - (void)fetchingTimelineWithError:(NSError *)error;
 - (void)receivedAccessTokenResponse: (NSData *)responseObject;
+- (void)receivedTimelineJSON: (NSData *)responseObject type: (NSString*)type;
+- (void)receivedPostDetailJSON: (NSData *)responseObject;
+- (void)receivedUserInfoJSON: (NSData *)responseObject;
+
+- (void)receivedResponse: (NSData *)responseObject;
 
 @end

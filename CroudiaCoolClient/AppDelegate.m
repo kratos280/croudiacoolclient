@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "CroudiaManager.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +16,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+#ifdef DEBUG
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+#endif
     return YES;
 }
 
