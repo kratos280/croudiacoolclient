@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CroudiaManagerDelegate.h"
 
-@interface LoginView : UIViewController <UIWebViewDelegate, CroudiaManagerDelegate>
+@interface LoginViewController : UIViewController <UIWebViewDelegate, CroudiaManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

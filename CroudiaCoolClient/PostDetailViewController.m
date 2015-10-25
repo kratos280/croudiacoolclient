@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "PostDetailView.h"
+#import "PostDetailViewController.h"
 
-@interface PostDetailView()
+@interface PostDetailViewController()
 
 @end
 
-@implementation PostDetailView
+@implementation PostDetailViewController
 
 @synthesize post;
 

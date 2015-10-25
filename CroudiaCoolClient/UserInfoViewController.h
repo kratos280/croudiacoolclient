@@ -13,7 +13,7 @@
 #import "Helper.h"
 #import "User.h"
 
-@interface UserInfoView : UIViewController
+@interface UserInfoViewController : UIViewController
 
 @property (strong, nonatomic) User *_user;
 @property (assign, nonatomic) NSUInteger _passedUserId;

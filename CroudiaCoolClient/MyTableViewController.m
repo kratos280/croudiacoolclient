@@ -7,6 +7,7 @@
 //
 
 #import "MyTableViewController.h"
+#import "SWRevealViewController.h"
 
 @interface MyTableViewController ()
 
@@ -30,6 +31,12 @@
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithTitle:@"投稿" style:UIBarButtonItemStyleDone target:self action:@selector(showPostStatusModal:)];
     self.navigationItem.rightBarButtonItem = buttonItem;
     
+    // Side bar menu
+    UIBarButtonItem *slideMenu = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu.png"] style:UIBarButtonItemStylePlain target:self.revealViewController action:@selector(revealToggle:)];
+    self.navigationItem.leftBarButtonItem = slideMenu;
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    // Loading HUD
     self.loadingHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.loadingHUD.dimBackground = YES;
     self.loadingHUD.labelText = @"Loading";
@@ -48,6 +55,7 @@
         refreshControl.attributedTitle = attributedTitle;
     }
     self.refreshControl = refreshControl;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -179,7 +187,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showPostDetail"]) {
-        PostDetailView *postDetailView = [segue destinationViewController];
+        PostDetailViewController *postDetailView = [segue destinationViewController];
         postDetailView.navigationItem.backBarButtonItem.title = @"Public Timeline";
         postDetailView.title = @"Post Detail";
         
@@ -193,7 +201,6 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *postStatusViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"postStatusViewController"]; // Storyboard ID
     [self presentModalViewController:postStatusViewController animated:YES];
-    
 }
 
 @end

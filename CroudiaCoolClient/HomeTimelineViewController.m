@@ -6,12 +6,12 @@
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "HomeView.h"
+#import "HomeTimelineViewController.h"
 
-@interface HomeView ()
+@interface HomeTimelineViewController ()
 @end
 
-@implementation HomeView
+@implementation HomeTimelineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "PostStatusView.h"
+#import "PostStatusViewController.h"
 
-@interface PostStatusView ()
+@interface PostStatusViewController ()
 
 @end
 
-@implementation PostStatusView
+@implementation PostStatusViewController
 
 #define TEXTVIEW_CHARACTER_COUNT_MAX 372
 - (void)viewDidLoad {
@@ -85,7 +85,6 @@
 }
 
 - (void)updateStatusWithMedia: (NSString*)status {
-    
     NSString *url = [BASE_URL stringByAppendingString:@"2/statuses/update_with_media.json"];
     NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
     NSDictionary *parameters = @{@"status": status};

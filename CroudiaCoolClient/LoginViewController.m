@@ -6,16 +6,19 @@
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "LoginView.h"
+#import "LoginViewController.h"
 #import "Global.h"
 #import "CroudiaManager.h"
+#import "MainTabBarViewController.h"
+#import "LeftMenuViewController.h"
+#import "SWRevealViewController.h"
 
-@interface LoginView() {
+@interface LoginViewController() {
     CroudiaManager *_croudiaManager;
 }
 @end
 
-@implementation LoginView
+@implementation LoginViewController
 
 @synthesize webView;
 
@@ -49,8 +52,14 @@
             [_croudiaManager getAccessToken];
             if (ACCESS_TOKEN) {
                 [self.webView removeFromSuperview];
+                
                 // goto main tab bar
-                [self performSegueWithIdentifier:@"showMainTabBar" sender:self];
+                UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                LeftMenuViewController *leftMenuViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LeftMenuViewController"];
+                MainTabBarViewController *mainTabBarViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarViewController"];
+                
+                SWRevealViewController *revealViewController = [[SWRevealViewController alloc] initWithRearViewController:leftMenuViewController frontViewController:mainTabBarViewController];
+                [self presentViewController:revealViewController animated:YES completion:nil];
             }
             return NO;
         } else {

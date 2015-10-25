@@ -6,13 +6,14 @@
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "UserInfoView.h"
+#import "UserInfoViewController.h"
+#import "SWRevealViewController.h"
 
-@interface UserInfoView ()
+@interface UserInfoViewController ()
 
 @end
 
-@implementation UserInfoView
+@implementation UserInfoViewController
 
 @synthesize _user, _passedUserId;
 
@@ -37,12 +38,10 @@
 //    summaryView.backgroundColor = [UIColor redColor];
 //    [self.view addSubview:summaryView];
 
-
     UIView *summaryViewButtom = [[UIView alloc] init];
     summaryViewButtom.backgroundColor = [UIColor grayColor];
     summaryViewButtom.frame = CGRectMake(0, 480, 320, 2);
     [self.view addSubview:summaryViewButtom];
-
 }
 
 - (void)didReceiveMemoryWarning {

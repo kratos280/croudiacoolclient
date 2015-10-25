@@ -11,7 +11,7 @@
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperationManager.h"
 
-@interface PostStatusView : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate>
+@interface PostStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *remainTextCount;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

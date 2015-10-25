@@ -1,5 +1,5 @@
 //
-//  HomeView.h
+//  MainTabBarView.h
 //  CroudiaCoolClient
 //
 //  Created by Tran Ngoc Cuong on 2015/07/12.
@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyTableViewController.h"
 
-@interface HomeView : MyTableViewController
+@interface MainTabBarViewController : UITabBarController
 
 @end

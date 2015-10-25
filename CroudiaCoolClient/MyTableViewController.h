@@ -11,9 +11,9 @@
 #import "CroudiaManagerDelegate.h"
 #import "PostCell.h"
 #import "Post.h"
-#import "PostDetailView.h"
+#import "PostDetailViewController.h"
 #import "CustomButton.h"
-#import "PostStatusView.h"
+#import "PostStatusViewController.h"
 #import "MBProgressHUD.h"
 #import "Helper.h"
 

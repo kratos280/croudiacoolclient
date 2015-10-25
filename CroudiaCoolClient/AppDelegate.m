@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "LeftMenuViewController.h"
+#import "MainTabBarViewController.h"
+#import "SWRevealViewController.h"
+#import "Global.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +26,24 @@
     [[AFNetworkActivityLogger sharedLogger] startLogging];
     [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
 #endif
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    LoginViewController *loginViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    self.window.rootViewController = loginViewController;
+    [self.window makeKeyAndVisible];
+
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    LeftMenuViewController *leftMenuViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LeftMenuViewController"];
+//    MainTabBarView *mainTabBarViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"mainTabBarViewController"];
+//    
+//    SWRevealViewController *revealViewController = [[SWRevealViewController alloc] initWithRearViewController:leftMenuViewController frontViewController:mainTabBarViewController];
+//    
+//    self.window.rootViewController = revealViewController;
+//    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 

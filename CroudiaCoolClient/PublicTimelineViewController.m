@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "PublicTimelineView.h"
+#import "PublicTimelineViewController.h"
 
-@interface PublicTimelineView ()
+@interface PublicTimelineViewController ()
 
 @end
 
-@implementation PublicTimelineView {
+@implementation PublicTimelineViewController {
     MBProgressHUD *hud;
 }
 

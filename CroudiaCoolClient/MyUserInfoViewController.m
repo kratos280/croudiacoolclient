@@ -1,18 +1,19 @@
 //
-//  MainTabBarView.m
+//  MyUserInfoView.m
 //  CroudiaCoolClient
 //
-//  Created by Tran Ngoc Cuong on 2015/07/12.
+//  Created by Tran Ngoc Cuong on 2015/08/03.
 //  Copyright (c) 2015年 ___AA___. All rights reserved.
 //
 
-#import "MainTabBarView.h"
+#import "MyUserInfoViewController.h"
+#import "SWRevealViewController.h"
 
-@interface MainTabBarView ()
+@interface MyUserInfoViewController ()
 
 @end
 
-@implementation MainTabBarView
+@implementation MyUserInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

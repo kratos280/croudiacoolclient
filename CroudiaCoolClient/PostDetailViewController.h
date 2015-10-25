@@ -11,9 +11,9 @@
 #import "CroudiaManager.h"
 #import "CroudiaManagerDelegate.h"
 #import "Helper.h"
-#import "UserInfoView.h"
+#import "UserInfoViewController.h"
 
-@interface PostDetailView : UIViewController <CroudiaManagerDelegate>
+@interface PostDetailViewController : UIViewController <CroudiaManagerDelegate>
 
 @property (strong, nonatomic) CroudiaManager *_croudiaManager;
 
