@@ -8,15 +8,9 @@
 
 #import "LoginViewController.h"
 #import "Global.h"
-#import "CroudiaManager.h"
 #import "MainTabBarViewController.h"
 #import "LeftMenuViewController.h"
 #import "SWRevealViewController.h"
-
-@interface LoginViewController() {
-    CroudiaManager *_croudiaManager;
-}
-@end
 
 @implementation LoginViewController
 
@@ -25,12 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _croudiaManager = [CroudiaManager sharedCroudiaManager];
-    _croudiaManager.delegate = self;
-    
     self.webView.delegate = self;
     NSString *url = [NSString stringWithFormat:@"%@?response_type=code&client_id=%@&state=%@", AUTHORIZE_URL, CONSUMER_KEY, STATE];
-    
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
@@ -49,8 +39,15 @@
         if (code != nil) {
             CODE = code;
             // get access token
-            [_croudiaManager getAccessToken];
+            CroudiaHTTPClient *httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
+            httpClient.delegate = self;
+            [httpClient getAccessToken];
+            
             if (ACCESS_TOKEN) {
+    
+                // Get Auth user info
+                [Account verifyCredentials];
+                
                 [self.webView removeFromSuperview];
                 
                 // goto main tab bar
@@ -65,13 +62,24 @@
         } else {
             // TODO handle error
         }
+        
     }
     return YES;
 }
 
-# pragma CroudiaManagerDelegate
-- (void)receivedAccessToken:(NSString *)accessToken {
-    ACCESS_TOKEN = accessToken;
+# pragma mark CroudiaManagerDelegate
+
+- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveAccessToken:(id)responseObject {
+    ACCESS_TOKEN = [responseObject valueForKey:@"access_token"];
+    REFRESH_TOKEN = [responseObject valueForKey:@"refresh_token"];
+    TOKEN_EXPIRES_IN = [responseObject valueForKey:@"expires_in"];
+    
+    // Store by NSUserDefaults
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:ACCESS_TOKEN forKey:@"ACCESS_TOKEN"];
+    [userDefaults setValue:REFRESH_TOKEN forKey:@"REFRESH_TOKEN"];
+    [userDefaults setValue:TOKEN_EXPIRES_IN forKey:@"TOKEN_EXPIRES_IN"];
+    [userDefaults synchronize];
 }
 
 @end

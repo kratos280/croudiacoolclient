@@ -15,18 +15,18 @@
 
 @implementation MyTableViewController
 
-@synthesize croudiaManager;
+@synthesize httpClient;
 @synthesize posts;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
+    httpClient.delegate = self;
+    
     if (![Helper isConnectedInternet]) {
         [self showWarningAlert:@"No Internet Connection"];
     }
-    
-    croudiaManager = [[CroudiaManager alloc] init];
-    croudiaManager.delegate = self;
     
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithTitle:@"投稿" style:UIBarButtonItemStyleDone target:self action:@selector(showPostStatusModal:)];
     self.navigationItem.rightBarButtonItem = buttonItem;
@@ -61,6 +61,26 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)favorite:(id)sender {
+    CustomButton *target = (CustomButton *)sender;
+    [httpClient favorite:target.postId isFavorited:target.isFavoried];
+    // TODO check request status
+    target.isFavoried = !target.isFavoried;
+    // Update view
+    if (!target.isFavoried) {
+        [target setTitle:@"お気に入り" forState:UIControlStateNormal];
+        [target setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    } else {
+        [target setTitle:@"お気に入り解除" forState:UIControlStateNormal];
+        [target setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }
+}
+
+- (void)showWarningAlert:(NSString *)warning {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:warning delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 #pragma mark - Table view data source
@@ -128,25 +148,6 @@
     [self performSegueWithIdentifier:@"showPostDetail" sender:self];
 }
 
-- (void)favorite:(id)sender {
-    CustomButton *target = (CustomButton *)sender;
-    [self.croudiaManager favorite:target.postId isFavorited:target.isFavoried];
-    // TODO check request status
-    target.isFavoried = !target.isFavoried;
-    // Update view
-    if (!target.isFavoried) {
-        [target setTitle:@"お気に入り" forState:UIControlStateNormal];
-        [target setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    } else {
-        [target setTitle:@"お気に入り解除" forState:UIControlStateNormal];
-        [target setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    }
-}
-
-- (void)showWarningAlert:(NSString *)warning {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:warning delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
-}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,7 +194,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Post *post = [self.posts objectAtIndex:indexPath.row];
-        postDetailView.post = post;
+        postDetailView.postId = post.id;
     }
 }
 
@@ -201,6 +202,12 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *postStatusViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"postStatusViewController"]; // Storyboard ID
     [self presentModalViewController:postStatusViewController animated:YES];
+}
+
+#pragma mark - CroudiaHTTPClientDelegate
+
+- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didFavoriteStatus:(id)responseObject {
+    
 }
 
 @end

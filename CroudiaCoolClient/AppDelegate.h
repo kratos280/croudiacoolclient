@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AFNetworkActivityLogger.h"
+#import "AFHTTPSessionManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

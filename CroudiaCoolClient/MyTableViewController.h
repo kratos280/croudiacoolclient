@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CroudiaManager.h"
-#import "CroudiaManagerDelegate.h"
+#import "CroudiaHTTPClient.h"
 #import "PostCell.h"
 #import "Post.h"
 #import "PostDetailViewController.h"
@@ -17,15 +16,14 @@
 #import "MBProgressHUD.h"
 #import "Helper.h"
 
-@interface MyTableViewController : UITableViewController <CroudiaManagerDelegate>
+@interface MyTableViewController : UITableViewController <CroudiaHTTPClientDelegate>
 
-@property (strong, nonatomic) CroudiaManager *croudiaManager;
+@property (strong, nonatomic) CroudiaHTTPClient *httpClient;
 @property (strong, nonatomic) NSArray *posts;
 @property (assign, nonatomic) BOOL *isFavorited;
 @property (strong, nonatomic) MBProgressHUD *loadingHUD;
 
 - (void)favorite: (id)sender;
-
 - (void)showWarningAlert:(NSString *)warning;
 
 @end

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Global.h"
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperationManager.h"
+#import "CroudiaHTTPClient.h"
 
-@interface PostStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate>
+@interface PostStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, CroudiaHTTPClientDelegate>
+
+@property (weak, nonatomic) CroudiaHTTPClient *httpClient;
+
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *remainTextCount;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -20,6 +22,5 @@
 - (IBAction)removeImage:(id)sender;
 - (IBAction)selectPhoto:(id)sender;
 - (IBAction)takePhoto:(id)sender;
-
 
 @end

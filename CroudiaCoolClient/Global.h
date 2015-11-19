@@ -17,8 +17,12 @@
 #define AUTHORIZE_URL @"https://api.croudia.com/oauth/authorize"
 
 extern NSString *ACCESS_TOKEN;
+extern NSString *REFRESH_TOKEN;
+extern NSString *TOKEN_EXPIRES_IN;
 extern NSString *CODE;
-extern NSString *test;
+
+extern NSString *SCREEN_NAME;
+extern NSString *USER_ID;
 
 typedef enum {
     Home,

@@ -9,5 +9,9 @@
 #import "Global.h"
 
 NSString *ACCESS_TOKEN;
+NSString *REFRESH_TOKEN;
+NSString *TOKEN_EXPIRES_IN;
 NSString *CODE;
-NSString *test;
+
+NSString *SCREEN_NAME;
+NSString *USER_ID;

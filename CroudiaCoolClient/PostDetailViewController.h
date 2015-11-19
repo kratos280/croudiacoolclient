@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
-#import "CroudiaManager.h"
-#import "CroudiaManagerDelegate.h"
+#import "CroudiaHTTPClient.h"
 #import "Helper.h"
 #import "UserInfoViewController.h"
 
-@interface PostDetailViewController : UIViewController <CroudiaManagerDelegate>
+@interface PostDetailViewController : UIViewController <CroudiaHTTPClientDelegate>
 
-@property (strong, nonatomic) CroudiaManager *_croudiaManager;
+@property (strong, nonatomic) CroudiaHTTPClient *_httpClient;
 
 @property (strong, nonatomic) Post *post;
 @property (assign, nonatomic) NSInteger postId;

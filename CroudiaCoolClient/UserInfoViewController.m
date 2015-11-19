@@ -19,10 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CroudiaHTTPClient *client = [CroudiaHTTPClient sharedCroudiaHTTPClient];
+    client.delegate = self;
+
     if (_passedUserId) {
-        [self fetchUserInfo:_passedUserId];
+        [client fetchUserInfo:_passedUserId];
     } else {
-        [self fetchMyInfo];
+        [client fetchMyInfo];
     }
     
 //    UIView *summaryView = [[UIView alloc] init];
@@ -49,51 +53,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)fetchMyInfo {
-    NSString *url = [BASE_URL stringByAppendingString:@"account/verify_credentials.json"];
-    NSString *authHeaderValue = [NSString stringWithFormat:@"Bearer %@", ACCESS_TOKEN];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:authHeaderValue forHTTPHeaderField:@"Authorization"];
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self receivedResponse:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-}
+# pragma mark CroudiaHTTPClient Delegate
 
-- (void)fetchUserInfo:(NSInteger)userId {
-    NSString *url = [BASE_URL stringByAppendingString:@"users/show.json"];
-    NSDictionary *parameters = @{@"user_id": [NSString stringWithFormat:@"%d", userId]};
-    NSString *authHeaderValue = [NSString stringWithFormat:@"Bearer %@", ACCESS_TOKEN];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:authHeaderValue forHTTPHeaderField:@"Authorization"];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self receivedResponse:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-}
-
-
-- (void)receivedResponse:(NSData *)responseObject {
-//    NSArray *userArr = responseObject;
-//    User *user = [[User alloc] init];
-//    user.id = [[userArr valueForKey:@"id"]integerValue];
-//    user.name = [userArr valueForKey:@"name"];
-//    user.screenName = [userArr valueForKey:@"screen_name"];
-//    user.description = [userArr valueForKey:@"description"];
-//    user.url = [userArr valueForKey:@"url"];
-//    user.profileImageUrl = [userArr valueForKey:@"profile_image_url_https"];
-//    user.coverImageUrl = [userArr valueForKey:@"cover_image_url_https"];
-//    user.location = [userArr valueForKey:@"location"];
-//    user.favoritesCount = [[userArr valueForKey:@"favorites_count"]integerValue];
-//    user.following = ([[userArr valueForKey:@"following"]integerValue] == 0) ? NO : YES;
-//    user.followersCount = [[userArr valueForKey:@"followers_count"]integerValue];
-//    user.statusesCount = [[userArr valueForKey:@"statuses_count"]integerValue];
-//    
-//    _user = user;
+- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveUserInfo:(id)responseObject {
+    //    NSArray *userArr = responseObject;
+    //    User *user = [[User alloc] init];
+    //    user.id = [[userArr valueForKey:@"id"]integerValue];
+    //    user.name = [userArr valueForKey:@"name"];
+    //    user.screenName = [userArr valueForKey:@"screen_name"];
+    //    user.description = [userArr valueForKey:@"description"];
+    //    user.url = [userArr valueForKey:@"url"];
+    //    user.profileImageUrl = [userArr valueForKey:@"profile_image_url_https"];
+    //    user.coverImageUrl = [userArr valueForKey:@"cover_image_url_https"];
+    //    user.location = [userArr valueForKey:@"location"];
+    //    user.favoritesCount = [[userArr valueForKey:@"favorites_count"]integerValue];
+    //    user.following = ([[userArr valueForKey:@"following"]integerValue] == 0) ? NO : YES;
+    //    user.followersCount = [[userArr valueForKey:@"followers_count"]integerValue];
+    //    user.statusesCount = [[userArr valueForKey:@"statuses_count"]integerValue];
+    //
+    //    _user = user;
     
     NSArray *userArr = responseObject;
     self.nameLabel.text = [userArr valueForKey:@"name"];
@@ -104,6 +82,7 @@
     self.countFollowLabel.text = [NSString stringWithFormat:@"%@ フォロー", [userArr valueForKey:@"friends_count"]];
     self.countFollowerLabel.text = [NSString stringWithFormat:@"%@ フォロワー", [userArr valueForKey:@"followers_count"]];
 }
+
 /*
 #pragma mark - Navigation
 

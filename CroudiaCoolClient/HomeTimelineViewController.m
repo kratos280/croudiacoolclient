@@ -15,20 +15,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.loadingHUD show:YES];
     self.title = @"Home";
-    [self fetchHomeTimeline];
     
-    [self.refreshControl addTarget:self action:@selector(fetchHomeTimeline) forControlEvents:UIControlEventValueChanged];
+    self.httpClient.delegate = self;
+    [self.httpClient fetchTimeline:@"Home"];
+    
+    [self.refreshControl addTarget:self action:@selector(refreshTimeline) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)fetchHomeTimeline {
+- (void)viewDidAppear:(BOOL)animated {
+    self.httpClient.delegate = self;
+}
+
+- (void)refreshTimeline {
     if (![Helper isConnectedInternet]) {
         [self showWarningAlert:@"No Internet Connection"];
         [self.refreshControl endRefreshing];
         return;
     }
-    [self.croudiaManager fetchTimeline:@"Home"];
+    
+    [self.httpClient fetchTimeline:@"Home"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +44,35 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)receivedTimelinePosts:(NSArray *)posts type:(NSString *)type {
+# pragma mark CroudiaHTTPClient Delegate
+
+- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveTimeline:(id)responseObject {
+    NSMutableArray *posts = [[NSMutableArray alloc] init];
+    for (NSArray *data in responseObject) {
+        Post *post = [[Post alloc] init];
+        post.title = [data valueForKey:@"text"];
+        post.favoritedCount = [[data valueForKey:@"favorited_count"] integerValue];
+        post.id = [[data valueForKey:@"id"] integerValue];
+        post.favorited = ([[data valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
+        
+        NSString *createdAt = [data valueForKey:@"created_at"];
+        NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+        [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s ZZZ"];
+        NSDate *date = [dateFormater dateFromString:createdAt];
+        [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s"];
+        post.createdAt = [dateFormater stringFromDate:date];
+        
+        NSArray *userArr = [data valueForKey:@"user"];
+        User *user = [[User alloc] init];
+        user.id = [[userArr valueForKey:@"id"]integerValue];
+        user.name = [userArr valueForKey:@"name"];
+        user.profileImageUrl = [userArr valueForKey:@"profile_image_url_https"];
+        user.following = ([[userArr valueForKey:@"following"]integerValue] == 0) ? NO : YES;
+        post.user = user;
+        
+        [posts addObject:post];
+    }
+    
     self.posts = posts;
     [self.tableView reloadData];
     [self.loadingHUD hide:YES];
@@ -98,6 +134,5 @@
 //        postDetailView.post = post;
 //    }
 //}
-
 
 @end

@@ -22,29 +22,62 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-#ifdef DEBUG
-    [[AFNetworkActivityLogger sharedLogger] startLogging];
-    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
-#endif
+//#ifdef DEBUG
+//    [[AFNetworkActivityLogger sharedLogger] startLogging];
+//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+//#endif
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *accessToken = [userDefaults valueForKey:@"ACCESS_TOKEN"];
+        NSString *expires = [userDefaults valueForKey:@"TOKEN_EXPIRES_IN"];
+    NSLog(@"%@", expires);
+    if (!accessToken) {
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginViewController *rootViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        self.window.rootViewController = rootViewController;
+        [self.window makeKeyAndVisible];
+    } else {
+        NSLog(@"have user default access token %@",
+              accessToken);
+        //[self verifyCredentials];
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    LoginViewController *loginViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    self.window.rootViewController = loginViewController;
+    LoginViewController *rootViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
-
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    LeftMenuViewController *leftMenuViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LeftMenuViewController"];
-//    MainTabBarView *mainTabBarViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"mainTabBarViewController"];
-//    
-//    SWRevealViewController *revealViewController = [[SWRevealViewController alloc] initWithRearViewController:leftMenuViewController frontViewController:mainTabBarViewController];
-//    
-//    self.window.rootViewController = revealViewController;
-//    [self.window makeKeyAndVisible];
-    
     
     return YES;
+}
+
+- (void)verifyCredentials {
+    NSString *url = [BASE_URL stringByAppendingString:@"account/verify_credentials.json"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *authHeaderValue = [NSString stringWithFormat:@"Bearer %@", ACCESS_TOKEN];
+    [manager.requestSerializer setValue:authHeaderValue forHTTPHeaderField:@"Authorization"];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"BBB");
+        
+        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            MainTabBarViewController *mainTabBarViewController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarViewController"];
+            LeftMenuViewController *leftMenuViewController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"LeftMenuViewController"];
+            SWRevealViewController *rootViewController = [[SWRevealViewController alloc] initWithRearViewController:leftMenuViewController frontViewController:mainTabBarViewController];
+                    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            [self.window setRootViewController:rootViewController];
+            [self.window makeKeyAndVisible];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"ABCD");
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginViewController *rootViewController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        self.window.rootViewController = rootViewController;
+        [self.window makeKeyAndVisible];
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

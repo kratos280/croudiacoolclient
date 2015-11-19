@@ -18,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
+    self.httpClient.delegate = self;
+    
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 65)];
     UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Post Status"];
     UIButton *postButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
@@ -61,8 +64,13 @@
         [self showErrorAlert:error];
         return;
     }
+    NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
     
-    [self updateStatusWithMedia:statusText];
+    if (imageData) {
+        [self.httpClient updateStatus:statusText withMedia:imageData];
+    } else {
+        [self.httpClient updateStatus:statusText];
+    }
 }
 
 - (void)cancelPost:(id)sender {
@@ -84,43 +92,12 @@
     [errorAlert show];
 }
 
-- (void)updateStatusWithMedia: (NSString*)status {
-    NSString *url = [BASE_URL stringByAppendingString:@"2/statuses/update_with_media.json"];
-    NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
-    NSDictionary *parameters = @{@"status": status};
-    NSString *authHeaderValue = [NSString stringWithFormat:@"Bearer %@", ACCESS_TOKEN];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:authHeaderValue forHTTPHeaderField:@"Authorization"];
-    [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        if(self.imageView.image){
-            [formData appendPartWithFileData:imageData name:@"media" fileName:@"upload.jpg" mimeType:@"image/png"];
-        }
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Post status success");
-        [self didPostStatus];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Post status error = %@", error);
-        NSString *alertText = @"Post Status Fail";
-        [self showErrorAlert:alertText];
-    }];
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+# pragma mark Image Picker
 
 - (IBAction)removeImage:(id)sender {
     self.imageView.image = Nil;
     self.removeImageButton.hidden = true;
 }
-
 
 - (IBAction)selectPhoto:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -158,10 +135,27 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)didPostStatus {
+# pragma mark CroudiaHTTPClient Delegate
+
+- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didUpdateStatus:(id)responseObject {
     [self dismissViewControllerAnimated:YES completion:nil];
     self.textView.text =@"";
     self.imageView.image = Nil;
 }
+
+- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didFailWithError:(NSError *)error {
+    NSString *alertText = @"Post Status Fail";
+    [self showErrorAlert:alertText];
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

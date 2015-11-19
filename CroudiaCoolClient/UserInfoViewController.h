@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Global.h"
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPRequestOperationManager.h"
 #import "Helper.h"
 #import "User.h"
+#import "CroudiaHTTPClient.h"
 
-@interface UserInfoViewController : UIViewController
+@interface UserInfoViewController : UIViewController <CroudiaHTTPClientDelegate>
 
 @property (strong, nonatomic) User *_user;
 @property (assign, nonatomic) NSUInteger _passedUserId;
@@ -25,9 +24,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *countStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countFollowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countFollowerLabel;
-
-- (void)receivedResponse: (NSData *)responseObject;
-- (void)fetchMyInfo;
-- (void)fetchUserInfo: (NSInteger)userId;
 
 @end
