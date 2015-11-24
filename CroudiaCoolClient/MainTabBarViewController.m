@@ -35,8 +35,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-# pragma mark CroudiaHTTPClient Delegate
-
 /*
 #pragma mark - Navigation
 

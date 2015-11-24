@@ -20,15 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CroudiaHTTPClient *client = [CroudiaHTTPClient sharedCroudiaHTTPClient];
-    client.delegate = self;
-
-    if (_passedUserId) {
-        [client fetchUserInfo:_passedUserId];
-    } else {
-        [client fetchMyInfo];
-    }
-    
 //    UIView *summaryView = [[UIView alloc] init];
 //    summaryView.frame = CGRectMake(0, 420, 320, 100);
 //    [summaryView addSubview:self.countStatusLabel];
@@ -46,6 +37,28 @@
     summaryViewButtom.backgroundColor = [UIColor grayColor];
     summaryViewButtom.frame = CGRectMake(0, 480, 320, 2);
     [self.view addSubview:summaryViewButtom];
+    
+    // TODO: Can use USER_ID
+    NSString *apiResourcePath = nil;
+    NSDictionary *parameters = nil;
+    if (_passedUserId) {
+        apiResourcePath = @"users/show.json";
+        parameters = @{@"user_id": [NSString stringWithFormat:@"%d", _passedUserId]};
+    } else {
+        apiResourcePath = @"account/verify_credentials.json";
+    }
+    
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        [self didReceiveUserInfo:responseObject];
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        NSLog(@"%@", error);
+    };
+    
+    CroudiaHTTPClient *httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
+    [httpClient get:apiResourcePath parameters:parameters successCallback:successCallback failureCallback:failureCallback];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,9 +66,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-# pragma mark CroudiaHTTPClient Delegate
-
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveUserInfo:(id)responseObject {
+- (void)didReceiveUserInfo:(id)responseObject {
     //    NSArray *userArr = responseObject;
     //    User *user = [[User alloc] init];
     //    user.id = [[userArr valueForKey:@"id"]integerValue];
@@ -77,7 +88,12 @@
     self.nameLabel.text = [userArr valueForKey:@"name"];
     self.descriptionLabel.text = [[userArr valueForKey:@"description"] isKindOfClass:[NSNull class]] ? nil : [userArr valueForKey:@"description"];
     self.profileImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[userArr valueForKey:@"profile_image_url_https"]]]];
-    self.coverImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[userArr valueForKey:@"cover_image_url_https"]]]];
+    NSData *coverImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[userArr valueForKey:@"cover_image_url_https"]]];
+    if (coverImageData) {
+        self.coverImageView.image = [UIImage imageWithData:coverImageData];
+    } else {
+        self.coverImageView.image = [UIImage imageNamed:@"profile-cover-default.jpeg"];
+    }
     self.countStatusLabel.text = [NSString stringWithFormat:@"%@ ささやき", [userArr valueForKey:@"statuses_count"]];
     self.countFollowLabel.text = [NSString stringWithFormat:@"%@ フォロー", [userArr valueForKey:@"friends_count"]];
     self.countFollowerLabel.text = [NSString stringWithFormat:@"%@ フォロワー", [userArr valueForKey:@"followers_count"]];

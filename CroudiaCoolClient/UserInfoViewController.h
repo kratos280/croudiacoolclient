@@ -12,7 +12,7 @@
 #import "User.h"
 #import "CroudiaHTTPClient.h"
 
-@interface UserInfoViewController : UIViewController <CroudiaHTTPClientDelegate>
+@interface UserInfoViewController : UIViewController
 
 @property (strong, nonatomic) User *_user;
 @property (assign, nonatomic) NSUInteger _passedUserId;

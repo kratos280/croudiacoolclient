@@ -22,7 +22,6 @@
     [super viewDidLoad];
     
     httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
-    httpClient.delegate = self;
     
     if (![Helper isConnectedInternet]) {
         [self showWarningAlert:@"No Internet Connection"];
@@ -65,22 +64,59 @@
 
 - (void)favorite:(id)sender {
     CustomButton *target = (CustomButton *)sender;
-    [httpClient favorite:target.postId isFavorited:target.isFavoried];
-    // TODO check request status
-    target.isFavoried = !target.isFavoried;
-    // Update view
-    if (!target.isFavoried) {
-        [target setTitle:@"お気に入り" forState:UIControlStateNormal];
-        [target setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    
+    NSString *apiResourcePath = nil;
+    if (target.isFavoried) {
+        apiResourcePath = [NSString stringWithFormat:@"2/favorites/destroy/%d.json", target.postId];
     } else {
-        [target setTitle:@"お気に入り解除" forState:UIControlStateNormal];
-        [target setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        apiResourcePath = [NSString stringWithFormat:@"2/favorites/create/%d.json", target.postId];
     }
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        BOOL isFavorited = ([[responseObject valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
+        target.isFavoried = isFavorited;
+        // Update view
+        if (!isFavorited) {
+            [target setTitle:@"お気に入り" forState:UIControlStateNormal];
+            [target setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        } else {
+            [target setTitle:@"お気に入り解除" forState:UIControlStateNormal];
+            [target setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        }
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        [self showWarningAlert:error.localizedDescription];
+    };
+    
+    [httpClient post:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
 }
 
 - (void)showWarningAlert:(NSString *)warning {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:warning delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
+}
+
+// TODO: Add delete confirm dialog 
+- (void)deletePost:(id)sender {
+    CustomButton *deleteButton = (CustomButton *)sender;
+    NSString *apiResourcePath = [NSString stringWithFormat:@"2/statuses/destroy/%d.json", deleteButton.postId];
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        // TODO: Can re-fetch timeline
+        [posts removeObjectAtIndex:deleteButton.tableCellRow];
+        [self.tableView reloadData];
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        NSLog(@"%@", error);
+    };
+    
+    [self.httpClient post:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
+}
+
+- (void)refreshTimelineTable {
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -128,6 +164,16 @@
     cell.userNameLabel.text = post.user.name;
     cell.userProfileImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:post.user.profileImageUrl]]];
     
+    CustomButton *deleteButton = (CustomButton *)[cell viewWithTag:109];
+    if (post.user.id == [USER_ID integerValue]) {
+        deleteButton.hidden = NO;
+        deleteButton.postId = post.id;
+        deleteButton.tableCellRow = indexPath.row;
+        [deleteButton addTarget:self action:@selector(deletePost:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        deleteButton.hidden = YES;
+    }
+    
     // Action buttons
     CustomButton *favoriteButton = (CustomButton*)[cell viewWithTag:101];
     favoriteButton.postId = post.id;
@@ -136,6 +182,7 @@
         [favoriteButton setTitle:@"お気に入り解除" forState:UIControlStateNormal];
         [favoriteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }
+    
     [favoriteButton addTarget:self action:@selector(favorite:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
@@ -182,7 +229,6 @@
 }
 */
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -202,12 +248,6 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *postStatusViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"postStatusViewController"]; // Storyboard ID
     [self presentModalViewController:postStatusViewController animated:YES];
-}
-
-#pragma mark - CroudiaHTTPClientDelegate
-
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didFavoriteStatus:(id)responseObject {
-    
 }
 
 @end

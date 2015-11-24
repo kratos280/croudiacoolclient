@@ -10,7 +10,7 @@
 #import "Global.h"
 #import "CroudiaHTTPClient.h"
 
-@interface Account : NSObject <CroudiaHTTPClientDelegate>
+@interface Account : NSObject
 
 + (void)verifyCredentials;
 

@@ -11,6 +11,8 @@
 @interface CustomButton : UIButton
 
 @property (assign, nonatomic) NSInteger postId;
+@property (assign, nonatomic) NSInteger tableCellRow;
 @property (assign, nonatomic) BOOL isFavoried;
+
 
 @end

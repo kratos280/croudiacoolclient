@@ -10,7 +10,7 @@
 #import "Global.h"
 #import "CroudiaHTTPClient.h"
 
-@interface PostStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, CroudiaHTTPClientDelegate>
+@interface PostStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) CroudiaHTTPClient *httpClient;
 

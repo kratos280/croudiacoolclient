@@ -22,21 +22,62 @@
     self.title = @"Public";
     [self.loadingHUD show:YES];
     
-    self.httpClient =[CroudiaHTTPClient sharedCroudiaHTTPClient];
-    self.httpClient.delegate = self;
-    
     //    dispatch_queue_t fetchQueue = dispatch_queue_create("Fetch Queue",NULL);
     //    dispatch_async(fetchQueue, ^(void) {
     //        [self fetchPublicTimeline];
     //    });
-    [self.httpClient fetchTimeline:@"Public"];
+    [self fetchTimeline];
     
     [self.refreshControl addTarget:self action:@selector(refreshTimeline) forControlEvents:UIControlEventValueChanged];
+    
+    // Notification Observe
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTimelineTable:) name:@"refreshTimelineTable" object:nil];
 }
 
-// FIXME: temporary to fix refresh control
-- (void)viewDidAppear:(BOOL)animated {
-    self.httpClient.delegate = self;
+- (void)fetchTimeline {
+    NSString *apiResourcePath = @"statuses/public_timeline.json";
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        NSMutableArray *posts = [[NSMutableArray alloc] init];
+        for (NSArray *data in responseObject) {
+            Post *post = [[Post alloc] init];
+            post.title = [data valueForKey:@"text"];
+            post.favoritedCount = [[data valueForKey:@"favorited_count"] integerValue];
+            post.id = [[data valueForKey:@"id"] integerValue];
+            post.favorited = ([[data valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
+            
+            NSString *createdAt = [data valueForKey:@"created_at"];
+            NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+            [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s ZZZ"];
+            NSDate *date = [dateFormater dateFromString:createdAt];
+            [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s"];
+            post.createdAt = [dateFormater stringFromDate:date];
+            
+            NSArray *userArr = [data valueForKey:@"user"];
+            User *user = [[User alloc] init];
+            user.id = [[userArr valueForKey:@"id"]integerValue];
+            user.name = [userArr valueForKey:@"name"];
+            user.profileImageUrl = [userArr valueForKey:@"profile_image_url_https"];
+            user.following = ([[userArr valueForKey:@"following"]integerValue] == 0) ? NO : YES;
+            post.user = user;
+            
+            [posts addObject:post];
+        }
+        
+        self.posts = posts;
+        [self.tableView reloadData];
+        [self.loadingHUD hide:YES];
+        
+        if (self.refreshControl) {
+            [self.refreshControl endRefreshing];
+        }
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        [self showWarningAlert:error.description];
+    };
+    
+    [self.httpClient get:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
 }
 
 - (void)refreshTimeline {
@@ -46,7 +87,7 @@
         return;
     }
     
-    [self.httpClient fetchTimeline:@"Public"];
+    [self fetchTimeline];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,46 +95,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark CroudiaHTTPClient Delegate
+# pragma mark Notifications
 
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveTimeline:(id)responseObject {
-    NSMutableArray *posts = [[NSMutableArray alloc] init];
-    for (NSArray *data in responseObject) {
-        Post *post = [[Post alloc] init];
-        post.title = [data valueForKey:@"text"];
-        post.favoritedCount = [[data valueForKey:@"favorited_count"] integerValue];
-        post.id = [[data valueForKey:@"id"] integerValue];
-        post.favorited = ([[data valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
-        
-        NSString *createdAt = [data valueForKey:@"created_at"];
-        NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
-        [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s ZZZ"];
-        NSDate *date = [dateFormater dateFromString:createdAt];
-        [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s"];
-        post.createdAt = [dateFormater stringFromDate:date];
-        
-        NSArray *userArr = [data valueForKey:@"user"];
-        User *user = [[User alloc] init];
-        user.id = [[userArr valueForKey:@"id"]integerValue];
-        user.name = [userArr valueForKey:@"name"];
-        user.profileImageUrl = [userArr valueForKey:@"profile_image_url_https"];
-        user.following = ([[userArr valueForKey:@"following"]integerValue] == 0) ? NO : YES;
-        post.user = user;
-        
-        [posts addObject:post];
-    }
-    
-    self.posts = posts;
-    [self.tableView reloadData];
-    [self.loadingHUD hide:YES];
-    
-    if (self.refreshControl) {
-        [self.refreshControl endRefreshing];
-    }
-}
-
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveAccessToken:(id)responseObject {
-    // ???: Why getAccessToken also be called at here
+- (void)refreshTimelineTable:(NSNotification *)notification {
+    if ([[notification object] isKindOfClass:[PostDetailViewController class]]) {
+        [self fetchTimeline];
+    };
 }
 
 #pragma mark - Table view data source

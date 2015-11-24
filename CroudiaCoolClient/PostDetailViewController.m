@@ -20,8 +20,18 @@
     [super viewDidLoad];
 
     self._httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
-    self._httpClient.delegate = self;
-    [self._httpClient fetchStatusDetail:self.postId];
+    
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        [self didReceiveStatusDetail:responseObject];
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        NSLog(@"%@", error);
+    };
+    NSString *apiResourcePath = [NSString stringWithFormat:@"2/statuses/show/%d.json", self.postId];
+    
+    [self._httpClient get:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,41 +39,86 @@
     // Dispose of any resources that can be recreated.
 }
 
-// TODO: Can rebind view by returned responseObject when favorite or follow
 - (void)pressFavoriteButton:(id)sender {
-    [self._httpClient favorite:post.id isFavorited:post.favorited];
-    post.favorited = !(post.favorited);
-    // Update view
-    if (!post.favorited) {
-        [self.favoriteButton setTitle:@"お気に入り" forState:UIControlStateNormal];
-        [self.favoriteButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        post.favoritedCount = post.favoritedCount - 1;
+    NSString *apiResourcePath = nil;
+    if (post.favorited) {
+        apiResourcePath = [NSString stringWithFormat:@"2/favorites/destroy/%d.json", post.id];
     } else {
-        [self.favoriteButton setTitle:@"お気に入り解除" forState:UIControlStateNormal];
-        [self.favoriteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        post.favoritedCount = post.favoritedCount + 1;
+        apiResourcePath = [NSString stringWithFormat:@"2/favorites/create/%d.json", post.id];
     }
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        BOOL isFavorited = ([[responseObject valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
+        NSInteger favoritedCount = [[responseObject valueForKey:@"favorited_count"] integerValue];
+        
+        post.favorited = isFavorited;
+        post.favoritedCount = favoritedCount;
+        // Update view
+        if (!isFavorited) {
+            [self.favoriteButton setTitle:@"お気に入り" forState:UIControlStateNormal];
+            [self.favoriteButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        } else {
+            [self.favoriteButton setTitle:@"お気に入り解除" forState:UIControlStateNormal];
+            [self.favoriteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        }
+        self.favoriteInfoLabel.text = [NSString stringWithFormat:@"%d お気に入り", post.favoritedCount];
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        NSLog(@"%@", error);
+    };
     
-    self.favoriteInfoLabel.text = [NSString stringWithFormat:@"%d お気に入り", post.favoritedCount];
+    [self._httpClient post:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
 }
 
 - (IBAction)pressFollowButton:(id)sender {
-    [self._httpClient follow:post.user.id isFollowing:post.user.following];
-    post.user.following = !(post.user.following);
-    // Update view
-    if (!post.user.following) {
-        [self.followButton setTitle:@"フォロー" forState:UIControlStateNormal];
-        [self.followButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        self.followButton.layer.backgroundColor = [UIColor whiteColor].CGColor;
-        [Helper resizeButtonAccordingText:self.followButton plusWidth:10 plusHeight:10];
+    NSString *apiResourcePath = nil;
+    if (post.user.following) {
+        apiResourcePath = @"friendships/destroy.json";
     } else {
-
-        [self.followButton setTitle:@"フォロー中" forState:UIControlStateNormal];
-        [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        self.followButton.layer.backgroundColor = [UIColor blueColor].CGColor;
-        self.followButton.titleLabel.font = [UIFont systemFontOfSize:10];
-        [Helper resizeButtonAccordingText:self.followButton plusWidth:10 plusHeight:10];
+        apiResourcePath = @"friendships/create.json";
     }
+    NSDictionary *parameters = @{@"user_id": [NSString stringWithFormat:@"%d", post.user.id]};
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        BOOL following = ([[responseObject valueForKey:@"following"]integerValue] == 0) ? NO : YES;
+        post.user.following = following;
+        // Update view
+        if (!post.user.following) {
+            [self.followButton setTitle:@"フォロー" forState:UIControlStateNormal];
+            [self.followButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            self.followButton.layer.backgroundColor = [UIColor whiteColor].CGColor;
+            [Helper resizeButtonAccordingText:self.followButton plusWidth:10 plusHeight:10];
+        } else {
+            [self.followButton setTitle:@"フォロー中" forState:UIControlStateNormal];
+            [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.followButton.layer.backgroundColor = [UIColor blueColor].CGColor;
+            self.followButton.titleLabel.font = [UIFont systemFontOfSize:10];
+            [Helper resizeButtonAccordingText:self.followButton plusWidth:10 plusHeight:10];
+        }
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        NSLog(@"%@", error);
+    };
+    
+    [self._httpClient post:apiResourcePath parameters:parameters successCallback:successCallback failureCallback:failureCallback];
+}
+
+- (IBAction)pressDeleteButton:(id)sender {
+    NSString *apiResourcePath = [NSString stringWithFormat:@"2/statuses/destroy/%d.json", post.id];
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTimelineTable" object:self];
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        NSLog(@"%@", error);
+    };
+    
+    [self._httpClient post:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
 }
 
 - (void)tapProfileImage:(id)sender {
@@ -76,9 +131,7 @@
     [self.navigationController pushViewController:userInfoViewController animated:YES];
 }
 
-# pragma mark CroudiaHTTPClient Delegate
-
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveStatusDetail:(id)responseObject {
+- (void)didReceiveStatusDetail:(id)responseObject {
     Post *postObj = [[Post alloc] init];
     postObj.title = [responseObject valueForKey:@"text"];
     postObj.favoritedCount = [[responseObject valueForKey:@"favorited_count"] integerValue];
@@ -95,6 +148,7 @@
     NSArray *userArr = [responseObject valueForKey:@"user"];
     User *user = [[User alloc] init];
     user.id = [[userArr valueForKey:@"id"]integerValue];
+    user.screenName = [userArr valueForKey:@"screen_name"];
     user.name = [userArr valueForKey:@"name"];
     user.profileImageUrl = [userArr valueForKey:@"profile_image_url_https"];
     user.following = ([[userArr valueForKey:@"following"]integerValue] == 0) ? NO : YES;
@@ -105,7 +159,10 @@
     
     // Update View
     self.titleLabel.text = postObj.title;
-    [self.titleLabel sizeToFit];
+    [self.titleLabel setNumberOfLines:0];
+    
+    self.screenNameLabel.text = postObj.user.screenName;
+    [self.screenNameLabel sizeToFit];
     
     self.followButton.layer.borderColor = [UIColor grayColor].CGColor;
     self.followButton.layer.borderWidth = 1.0f;
@@ -125,7 +182,7 @@
         NSArray *media = [entities valueForKey:@"media"];
         if ([[media valueForKey:@"type"] isEqualToString:@"photo"]) {
             NSString *mediaUrl = [media valueForKey:@"media_url_https"];
-            UIImageView *postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(70, 240, 150, 150)];
+            UIImageView *postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(70, 280, 150, 150)];
             postImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:mediaUrl]]];
             [self.view addSubview:postImageView];
         }

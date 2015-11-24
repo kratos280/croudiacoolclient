@@ -18,7 +18,6 @@
 
 - (void)fetchTimeline:(NSString *)type;
 - (void)getAccessToken;
-- (void)fetchHomeTimeline;
 - (void)fetchStatusDetail: (NSInteger)statusId;
 - (void)favorite:(NSInteger)postId isFavorited:(BOOL)isFavorited;
 - (void)follow:(NSInteger)userId isFollowing:(BOOL)isFollowing;
@@ -32,10 +31,11 @@
 - (void)get:(NSString *)apiResourcePath parameters:(NSDictionary *)parameters successCallback:(void (^)(NSURLSessionDataTask *task, id responseObject))successCallback
 failureCallback:(void (^)(NSURLSessionDataTask *task, NSError *error))failureCallback;
 
-// TODO: private method
+- (void)post:(NSString *)apiResourcePath parameters:(NSDictionary *)parameters successCallback:(void (^)(NSURLSessionDataTask *task, id responseObject))successCallback
+failureCallback:(void (^)(NSURLSessionDataTask *task, NSError *error))failureCallback;
 
-- (NSString *)buildURL:(NSString *)apiResourcePath;
-
+- (void)postWithMultiPartForm:(NSString *)apiResourcePath parameters:(NSDictionary *)parameters constructBody:(void (^)(id<AFMultipartFormData> formData))constructBody successCallback:(void (^)(NSURLSessionDataTask *task, id responseObject))successCallback
+failureCallback:(void (^)(NSURLSessionDataTask *task, NSError *error))failureCallback;
 
 @end
 

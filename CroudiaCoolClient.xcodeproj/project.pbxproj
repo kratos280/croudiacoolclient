@@ -10,6 +10,7 @@
 		1360406EA303E93337D5C206 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F62834E5F5A8C4085F723C01 /* libPods.a */; };
 		5E0D2C0D1BE60D3700E7DF28 /* CroudiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D2C0C1BE60D3700E7DF28 /* CroudiaHTTPClient.m */; };
 		5E0D2C111BFA22AC00E7DF28 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D2C101BFA22AC00E7DF28 /* Account.m */; };
+		5E0D2C141C02BB7E00E7DF28 /* profile-cover-default.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E0D2C131C02BB7E00E7DF28 /* profile-cover-default.jpeg */; };
 		5E5E21D41BCFEA0800E74396 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5E21D31BCFEA0800E74396 /* SWRevealViewController.m */; };
 		5E5E21D61BD6839900E74396 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E5E21D51BD6839900E74396 /* Login.storyboard */; };
 		5E5E21D91BDB78B000E74396 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5E21D81BDB78B000E74396 /* LeftMenuViewController.m */; };
@@ -55,6 +56,7 @@
 		5E0D2C0E1BE61D0100E7DF28 /* CroudiaHTTPClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CroudiaHTTPClientDelegate.h; sourceTree = "<group>"; };
 		5E0D2C0F1BFA22AC00E7DF28 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		5E0D2C101BFA22AC00E7DF28 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		5E0D2C131C02BB7E00E7DF28 /* profile-cover-default.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profile-cover-default.jpeg"; sourceTree = "<group>"; };
 		5E5E21D21BCFEA0800E74396 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5E5E21D31BCFEA0800E74396 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		5E5E21D51BD6839900E74396 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				5E5E21DE1BDC7A1A00E74396 /* Star-24.png */,
+				5E0D2C131C02BB7E00E7DF28 /* profile-cover-default.jpeg */,
 				5EE5240C1B527EC40094592D /* Favorite.png */,
 				5E5E21E21BDC7B1300E74396 /* Home-26.png */,
 				5E5E21E31BDC7B1300E74396 /* Home-32.png */,
@@ -384,6 +387,7 @@
 				5EE7E1371B974D2100CCC567 /* delete-32.png in Resources */,
 				5E5E21DC1BDBDE5F00E74396 /* menu.png in Resources */,
 				5E5E21D61BD6839900E74396 /* Login.storyboard in Resources */,
+				5E0D2C141C02BB7E00E7DF28 /* profile-cover-default.jpeg in Resources */,
 				5E5E21E41BDC7B1300E74396 /* Home-26.png in Resources */,
 				5EBFD3731B4550180023C881 /* Images.xcassets in Resources */,
 			);

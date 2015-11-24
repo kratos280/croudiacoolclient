@@ -12,7 +12,7 @@
 #import "Helper.h"
 #import "UserInfoViewController.h"
 
-@interface PostDetailViewController : UIViewController <CroudiaHTTPClientDelegate>
+@interface PostDetailViewController : UIViewController
 
 @property (strong, nonatomic) CroudiaHTTPClient *_httpClient;
 
@@ -25,10 +25,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteInfoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 
 - (IBAction)pressFavoriteButton:(id)sender;
 - (IBAction)pressFollowButton:(id)sender;
+- (IBAction)pressDeleteButton:(id)sender;
+
 
 @end

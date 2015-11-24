@@ -19,7 +19,6 @@
     [super viewDidLoad];
     
     self.httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
-    self.httpClient.delegate = self;
     
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 65)];
     UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Post Status"];
@@ -64,12 +63,32 @@
         [self showErrorAlert:error];
         return;
     }
-    NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
+
+    NSDictionary *parameters = @{@"status": statusText};
+    void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+    {
+        // Show success message
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Complete" message:@"Successfully post status" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.textView.text =@"";
+        self.imageView.image = Nil;
+    };
+    void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+    {
+        NSString *alertText = @"Post Status Fail";
+        [self showErrorAlert:alertText];
+    };
     
+    NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
     if (imageData) {
-        [self.httpClient updateStatus:statusText withMedia:imageData];
+        void (^constructBody)(id<AFMultipartFormData>) = ^void (id<AFMultipartFormData> formData)
+        {
+            [formData appendPartWithFileData:imageData name:@"media" fileName:@"upload.jpg" mimeType:@"image/png"];
+        };
+        [self.httpClient postWithMultiPartForm:@"2/statuses/update_with_media.json" parameters:parameters constructBody:constructBody successCallback:successCallback failureCallback:failureCallback];
     } else {
-        [self.httpClient updateStatus:statusText];
+        [self.httpClient post:@"2/statuses/update.json" parameters:parameters successCallback:successCallback failureCallback:failureCallback];
     }
 }
 
@@ -133,19 +152,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-# pragma mark CroudiaHTTPClient Delegate
-
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didUpdateStatus:(id)responseObject {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    self.textView.text =@"";
-    self.imageView.image = Nil;
-}
-
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didFailWithError:(NSError *)error {
-    NSString *alertText = @"Post Status Fail";
-    [self showErrorAlert:alertText];
 }
 
 /*

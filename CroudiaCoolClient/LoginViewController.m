@@ -40,8 +40,26 @@
             CODE = code;
             // get access token
             CroudiaHTTPClient *httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
-            httpClient.delegate = self;
-            [httpClient getAccessToken];
+            void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
+            {
+                ACCESS_TOKEN = [responseObject valueForKey:@"access_token"];
+                REFRESH_TOKEN = [responseObject valueForKey:@"refresh_token"];
+                TOKEN_EXPIRES_IN = [responseObject valueForKey:@"expires_in"];
+                
+                // Store by NSUserDefaults
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setValue:ACCESS_TOKEN forKey:@"ACCESS_TOKEN"];
+                [userDefaults setValue:REFRESH_TOKEN forKey:@"REFRESH_TOKEN"];
+                [userDefaults setValue:TOKEN_EXPIRES_IN forKey:@"TOKEN_EXPIRES_IN"];
+                [userDefaults synchronize];
+            };
+            void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
+            {
+                NSLog(@"%@", error);
+            };
+            NSDictionary *parameters = @{@"grant_type": @"authorization_code", @"client_id": CONSUMER_KEY, @"client_secret": CONSUMER_SECRET, @"code": CODE};
+            
+            [httpClient post:@"oauth/token" parameters:parameters successCallback:successCallback failureCallback:failureCallback];
             
             if (ACCESS_TOKEN) {
     
@@ -65,21 +83,6 @@
         
     }
     return YES;
-}
-
-# pragma mark CroudiaManagerDelegate
-
-- (void)croudiaHTTPClient:(CroudiaHTTPClient *)client didReceiveAccessToken:(id)responseObject {
-    ACCESS_TOKEN = [responseObject valueForKey:@"access_token"];
-    REFRESH_TOKEN = [responseObject valueForKey:@"refresh_token"];
-    TOKEN_EXPIRES_IN = [responseObject valueForKey:@"expires_in"];
-    
-    // Store by NSUserDefaults
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:ACCESS_TOKEN forKey:@"ACCESS_TOKEN"];
-    [userDefaults setValue:REFRESH_TOKEN forKey:@"REFRESH_TOKEN"];
-    [userDefaults setValue:TOKEN_EXPIRES_IN forKey:@"TOKEN_EXPIRES_IN"];
-    [userDefaults synchronize];
 }
 
 @end

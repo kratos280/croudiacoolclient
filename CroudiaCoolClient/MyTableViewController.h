@@ -16,14 +16,15 @@
 #import "MBProgressHUD.h"
 #import "Helper.h"
 
-@interface MyTableViewController : UITableViewController <CroudiaHTTPClientDelegate>
+@interface MyTableViewController : UITableViewController
 
 @property (strong, nonatomic) CroudiaHTTPClient *httpClient;
-@property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSMutableArray *posts;
 @property (assign, nonatomic) BOOL *isFavorited;
 @property (strong, nonatomic) MBProgressHUD *loadingHUD;
 
 - (void)favorite: (id)sender;
 - (void)showWarningAlert:(NSString *)warning;
+- (void)refreshTimelineTable;
 
 @end

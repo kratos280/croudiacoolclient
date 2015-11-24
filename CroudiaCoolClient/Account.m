@@ -11,8 +11,7 @@
 @implementation Account
 
 + (void)verifyCredentials {
-    CroudiaHTTPClient *client = [[CroudiaHTTPClient alloc] init];
-    
+    CroudiaHTTPClient *httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
     void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
     {
         SCREEN_NAME = [responseObject valueForKey:@"screen_name"];
@@ -30,7 +29,7 @@
         NSLog(@"%@", error);
     };
     
-    [client get:@"account/verify_credentials.json" parameters:nil successCallback:successCallback failureCallback:failureCallback];
+    [httpClient get:@"account/verify_credentials.json" parameters:nil successCallback:successCallback failureCallback:failureCallback];
 }
 
 @end

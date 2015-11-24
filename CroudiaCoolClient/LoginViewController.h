@@ -10,7 +10,7 @@
 #import "CroudiaHTTPClient.h"
 #import "Account.h"
 
-@interface LoginViewController : UIViewController <UIWebViewDelegate, CroudiaHTTPClientDelegate>
+@interface LoginViewController : UIViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
