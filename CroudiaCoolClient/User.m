@@ -10,6 +10,6 @@
 
 @implementation User
 
-@synthesize id, screenName, name, favoritesCount, url, following, followersCount, coverImageUrl, profileImageUrl, statusesCount, location, description;
+@synthesize id, screenName, name, favoritesCount, url, following, followersCount, coverImageUrl, profileImageUrl, statusesCount, location, description, friendsCount;
 
 @end

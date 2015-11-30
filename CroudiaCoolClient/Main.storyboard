@@ -117,7 +117,7 @@
             </objects>
             <point key="canvasLocation" x="-293" y="825"/>
         </scene>
-        <!--UserInfo-->
+        <!--User Info View Controller-->
         <scene sceneID="eay-aR-cxG">
             <objects>
                 <viewController storyboardIdentifier="UserInfoViewController" id="6uR-BH-cIs" customClass="UserInfoViewController" sceneMemberID="viewController">
@@ -140,15 +140,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cDs-jQ-vH2">
-                                <rect key="frame" x="148" y="180" width="172" height="118"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" id="Q39-zm-1xV">
-                                <rect key="frame" x="0.0" y="320" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="351" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eyo-TN-LyG">
@@ -189,31 +182,72 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aqe-r2-l7i">
-                                <rect key="frame" x="21" y="428" width="78" height="48"/>
+                                <rect key="frame" x="21" y="459" width="78" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oq7-Yc-C2G">
-                                <rect key="frame" x="129" y="428" width="70" height="48"/>
+                                <rect key="frame" x="129" y="459" width="70" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qbd-Jl-ij1">
-                                <rect key="frame" x="233" y="428" width="66" height="43"/>
+                                <rect key="frame" x="233" y="459" width="66" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="S1A-9h-dkq">
+                                <rect key="frame" x="197" y="313" width="117" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="プロフィール変更">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ndS-OV-OLg" kind="push" identifier="showChangeProfile" id="hqG-rI-Ehd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cDs-jQ-vH2">
+                                <rect key="frame" x="132" y="223" width="172" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bmv-cw-RgH">
+                                <rect key="frame" x="84" y="194" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="Edit Image-32.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressChangeProfileImageButton:" destination="6uR-BH-cIs" eventType="touchUpInside" id="G0V-8J-gc9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Sav-HA-jbc">
+                                <rect key="frame" x="288" y="62" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Edit Image-32.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressChangeCoverImageButton:" destination="6uR-BH-cIs" eventType="touchUpInside" id="5mq-Z2-aK7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="UserInfo" id="Udf-sX-Xrl"/>
+                    <navigationItem key="navigationItem" id="diD-KH-m4G"/>
                     <connections>
+                        <outlet property="changeCoverImageButton" destination="Sav-HA-jbc" id="9qx-ud-JDI"/>
+                        <outlet property="changeProfileButton" destination="S1A-9h-dkq" id="uIf-ds-pQd"/>
+                        <outlet property="changeProfileImageButton" destination="bmv-cw-RgH" id="nd1-TH-TwM"/>
                         <outlet property="countFollowLabel" destination="Oq7-Yc-C2G" id="0z1-Qz-u49"/>
                         <outlet property="countFollowerLabel" destination="qbd-Jl-ij1" id="2PR-L2-qI5"/>
                         <outlet property="countStatusLabel" destination="aqe-r2-l7i" id="4c9-kt-mpN"/>
@@ -225,12 +259,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wsh-5n-kAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="335" y="1354"/>
+            <point key="canvasLocation" x="867" y="1354"/>
         </scene>
-        <!--View Controller-->
+        <!--Change Profile-->
         <scene sceneID="6CK-0O-r90">
             <objects>
-                <viewController id="ndS-OV-OLg" sceneMemberID="viewController">
+                <viewController id="ndS-OV-OLg" customClass="ChangeProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RJU-ct-l3H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,27 +316,36 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rN4-uD-kfe">
-                                <rect key="frame" x="104" y="320" width="185" height="102"/>
+                                <rect key="frame" x="104" y="320" width="200" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LnE-sS-IkK">
-                                <rect key="frame" x="145" y="479" width="30" height="30"/>
+                                <rect key="frame" x="145" y="461" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="保存">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="save:" destination="ndS-OV-OLg" eventType="touchUpInside" id="lY6-DH-kcy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Change Profile" id="vuc-Ul-ehZ"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="rN4-uD-kfe" id="abr-xs-Lcf"/>
+                        <outlet property="locationTextField" destination="fHL-tg-SQL" id="PZP-j8-cYH"/>
+                        <outlet property="nameTextField" destination="KeO-gm-8yK" id="wWR-D2-5VC"/>
+                        <outlet property="urlTextField" destination="gqV-Sb-XpJ" id="dey-Cy-Hkt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJZ-pE-tyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="755" y="1349"/>
+            <point key="canvasLocation" x="1499" y="1296"/>
         </scene>
         <!--Favorite-->
         <scene sceneID="EUj-iR-cIo">
@@ -366,9 +409,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rcx-td-Cpw">
-                                <rect key="frame" x="274" y="284" width="46" height="30"/>
+                                <rect key="frame" x="264" y="289" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="delete-32.png">
+                                <state key="normal" backgroundImage="Remove Image-32.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -493,6 +536,7 @@
                     <navigationItem key="navigationItem" id="2Sc-rg-VWZ"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deletePostButton" destination="1fV-x0-6gd" id="6TG-46-vI2"/>
                         <outlet property="favoriteButton" destination="Hkr-4q-47D" id="3ce-np-QX4"/>
                         <outlet property="favoriteInfoLabel" destination="hsO-fT-hvL" id="OQh-Nd-J12"/>
                         <outlet property="followButton" destination="jpc-md-Bvc" id="6IQ-0W-d8T"/>
@@ -533,7 +577,7 @@
                         <segue destination="Qyw-xv-8jG" kind="relationship" relationship="viewControllers" id="q0h-LN-f34"/>
                         <segue destination="Zeu-LV-DlU" kind="relationship" relationship="viewControllers" id="4mV-F1-4yN"/>
                         <segue destination="Ocb-tZ-Y6s" kind="relationship" relationship="viewControllers" id="vj8-Kd-Gq6"/>
-                        <segue destination="6uR-BH-cIs" kind="relationship" relationship="viewControllers" id="dix-xC-4Sr"/>
+                        <segue destination="BRz-TF-iYX" kind="relationship" relationship="viewControllers" id="dix-xC-4Sr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8P-Eg-uQH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -608,13 +652,33 @@
             </objects>
             <point key="canvasLocation" x="335" y="-34"/>
         </scene>
+        <!--UserInfo-->
+        <scene sceneID="nvW-cR-Roj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BRz-TF-iYX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="UserInfo" id="Udf-sX-Xrl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BTY-kw-eSX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6uR-BH-cIs" kind="relationship" relationship="rootViewController" id="wxB-R3-Uyp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbe-x6-cAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="335" y="1354"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Edit Image-32.png" width="32" height="32"/>
         <image name="Favorite.png" width="50" height="50"/>
         <image name="Home-26.png" width="26" height="26"/>
         <image name="Home.png" width="50" height="50"/>
+        <image name="Remove Image-32.png" width="32" height="32"/>
         <image name="Star-24.png" width="24" height="24"/>
-        <image name="delete-32.png" width="32" height="32"/>
         <image name="menu.png" width="28" height="20"/>
         <image name="newsfeed.png" width="50" height="50"/>
     </resources>
@@ -624,6 +688,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FVh-bB-KjA"/>
+        <segue reference="U38-2J-ZCr"/>
     </inferredMetricsTieBreakers>
 </document>

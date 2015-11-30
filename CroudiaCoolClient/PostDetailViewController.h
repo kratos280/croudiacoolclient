@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *favoriteInfoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *deletePostButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 

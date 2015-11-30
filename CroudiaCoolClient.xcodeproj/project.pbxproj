@@ -11,6 +11,11 @@
 		5E0D2C0D1BE60D3700E7DF28 /* CroudiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D2C0C1BE60D3700E7DF28 /* CroudiaHTTPClient.m */; };
 		5E0D2C111BFA22AC00E7DF28 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D2C101BFA22AC00E7DF28 /* Account.m */; };
 		5E0D2C141C02BB7E00E7DF28 /* profile-cover-default.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E0D2C131C02BB7E00E7DF28 /* profile-cover-default.jpeg */; };
+		5E0D2C1A1C04B3E100E7DF28 /* ChangeProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D2C191C04B3E100E7DF28 /* ChangeProfileViewController.m */; };
+		5E0E87AE1C09DD54001A3A94 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E87AD1C09DD54001A3A94 /* BaseViewController.m */; };
+		5E4D4E821C09B1A000936FB5 /* Edit Image-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4D4E7F1C09B1A000936FB5 /* Edit Image-26.png */; };
+		5E4D4E831C09B1A000936FB5 /* Edit Image-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4D4E801C09B1A000936FB5 /* Edit Image-32.png */; };
+		5E4D4E841C09B1A000936FB5 /* Remove Image-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4D4E811C09B1A000936FB5 /* Remove Image-32.png */; };
 		5E5E21D41BCFEA0800E74396 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5E21D31BCFEA0800E74396 /* SWRevealViewController.m */; };
 		5E5E21D61BD6839900E74396 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E5E21D51BD6839900E74396 /* Login.storyboard */; };
 		5E5E21D91BDB78B000E74396 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5E21D81BDB78B000E74396 /* LeftMenuViewController.m */; };
@@ -57,6 +62,13 @@
 		5E0D2C0F1BFA22AC00E7DF28 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		5E0D2C101BFA22AC00E7DF28 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		5E0D2C131C02BB7E00E7DF28 /* profile-cover-default.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profile-cover-default.jpeg"; sourceTree = "<group>"; };
+		5E0D2C181C04B3E100E7DF28 /* ChangeProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeProfileViewController.h; sourceTree = "<group>"; };
+		5E0D2C191C04B3E100E7DF28 /* ChangeProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeProfileViewController.m; sourceTree = "<group>"; };
+		5E0E87AC1C09DD54001A3A94 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		5E0E87AD1C09DD54001A3A94 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		5E4D4E7F1C09B1A000936FB5 /* Edit Image-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit Image-26.png"; sourceTree = "<group>"; };
+		5E4D4E801C09B1A000936FB5 /* Edit Image-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit Image-32.png"; sourceTree = "<group>"; };
+		5E4D4E811C09B1A000936FB5 /* Remove Image-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Remove Image-32.png"; sourceTree = "<group>"; };
 		5E5E21D21BCFEA0800E74396 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5E5E21D31BCFEA0800E74396 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		5E5E21D51BD6839900E74396 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -192,6 +204,10 @@
 				5E5E21D81BDB78B000E74396 /* LeftMenuViewController.m */,
 				5E0D2C0F1BFA22AC00E7DF28 /* Account.h */,
 				5E0D2C101BFA22AC00E7DF28 /* Account.m */,
+				5E0D2C181C04B3E100E7DF28 /* ChangeProfileViewController.h */,
+				5E0D2C191C04B3E100E7DF28 /* ChangeProfileViewController.m */,
+				5E0E87AC1C09DD54001A3A94 /* BaseViewController.h */,
+				5E0E87AD1C09DD54001A3A94 /* BaseViewController.m */,
 			);
 			path = CroudiaCoolClient;
 			sourceTree = "<group>";
@@ -262,6 +278,9 @@
 				5E5E21E21BDC7B1300E74396 /* Home-26.png */,
 				5E5E21E31BDC7B1300E74396 /* Home-32.png */,
 				5E5E21E01BDC7A9000E74396 /* Star-32.png */,
+				5E4D4E7F1C09B1A000936FB5 /* Edit Image-26.png */,
+				5E4D4E801C09B1A000936FB5 /* Edit Image-32.png */,
+				5E4D4E811C09B1A000936FB5 /* Remove Image-32.png */,
 				5E5E21DA1BDBDE5F00E74396 /* menu.png */,
 				5E5E21DB1BDBDE5F00E74396 /* menu@2x.png */,
 				5EE7E1361B974D2100CCC567 /* delete-32.png */,
@@ -383,10 +402,13 @@
 				5E5E21E51BDC7B1300E74396 /* Home-32.png in Resources */,
 				5EBFD3761B4550180023C881 /* LaunchScreen.xib in Resources */,
 				5E5E21E11BDC7A9000E74396 /* Star-32.png in Resources */,
+				5E4D4E841C09B1A000936FB5 /* Remove Image-32.png in Resources */,
 				5E5E21DF1BDC7A1A00E74396 /* Star-24.png in Resources */,
 				5EE7E1371B974D2100CCC567 /* delete-32.png in Resources */,
 				5E5E21DC1BDBDE5F00E74396 /* menu.png in Resources */,
 				5E5E21D61BD6839900E74396 /* Login.storyboard in Resources */,
+				5E4D4E831C09B1A000936FB5 /* Edit Image-32.png in Resources */,
+				5E4D4E821C09B1A000936FB5 /* Edit Image-26.png in Resources */,
 				5E0D2C141C02BB7E00E7DF28 /* profile-cover-default.jpeg in Resources */,
 				5E5E21E41BDC7B1300E74396 /* Home-26.png in Resources */,
 				5EBFD3731B4550180023C881 /* Images.xcassets in Resources */,
@@ -459,9 +481,11 @@
 				5EBFD36B1B4550180023C881 /* AppDelegate.m in Sources */,
 				5EE5242B1B5BD79A0094592D /* MyTableViewController.m in Sources */,
 				5EFB1D0C1B6E27AB00E2232C /* UserInfoViewController.m in Sources */,
+				5E0E87AE1C09DD54001A3A94 /* BaseViewController.m in Sources */,
 				5EE7E13B1B9C534300CCC567 /* Reachability.m in Sources */,
 				5EE524011B520E450094592D /* Global.m in Sources */,
 				5EBFD3681B4550180023C881 /* main.m in Sources */,
+				5E0D2C1A1C04B3E100E7DF28 /* ChangeProfileViewController.m in Sources */,
 				5E5E21E81BDC7C3E00E74396 /* HomeTimelineViewController.m in Sources */,
 				5EFB1D121B7F874E00E2232C /* PostStatusViewController.m in Sources */,
 				5EE524211B5B6FE10094592D /* PostDetailViewController.m in Sources */,
@@ -524,7 +548,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -561,7 +585,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

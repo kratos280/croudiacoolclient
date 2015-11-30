@@ -22,4 +22,5 @@
 @property (assign, nonatomic) BOOL following;
 @property (assign, nonatomic) NSInteger followersCount;
 @property (assign, nonatomic) NSInteger statusesCount;
+@property (assign, nonatomic) NSInteger friendsCount;
 @end

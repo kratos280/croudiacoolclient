@@ -11,8 +11,10 @@
 #import "Helper.h"
 #import "User.h"
 #import "CroudiaHTTPClient.h"
+#import "ChangeProfileViewController.h"
+#import "BaseViewController.h"
 
-@interface UserInfoViewController : UIViewController
+@interface UserInfoViewController : BaseViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) User *_user;
 @property (assign, nonatomic) NSUInteger _passedUserId;
@@ -24,5 +26,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *countStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countFollowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countFollowerLabel;
+@property (weak, nonatomic) IBOutlet UIButton *changeProfileButton;
+@property (weak, nonatomic) IBOutlet UIButton *changeProfileImageButton;
+@property (weak, nonatomic) IBOutlet UIButton *changeCoverImageButton;
+
+- (IBAction)pressChangeProfileImageButton:(id)sender;
+- (IBAction)pressChangeCoverImageButton:(id)sender;
 
 @end

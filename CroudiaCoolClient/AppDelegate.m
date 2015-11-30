@@ -22,10 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//#ifdef DEBUG
-//    [[AFNetworkActivityLogger sharedLogger] startLogging];
-//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
-//#endif
+#ifdef DEBUG
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelError];
+#endif
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *accessToken = [userDefaults valueForKey:@"ACCESS_TOKEN"];

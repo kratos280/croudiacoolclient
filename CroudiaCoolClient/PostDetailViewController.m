@@ -158,6 +158,12 @@
     post = postObj;
     
     // Update View
+    if ([post.user.screenName isEqualToString:SCREEN_NAME]) {
+        self.deletePostButton.hidden = NO;
+    } else {
+        self.deletePostButton.hidden = YES;
+    }
+    
     self.titleLabel.text = postObj.title;
     [self.titleLabel setNumberOfLines:0];
     
