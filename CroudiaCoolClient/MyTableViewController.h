@@ -15,6 +15,7 @@
 #import "PostStatusViewController.h"
 #import "MBProgressHUD.h"
 #import "Helper.h"
+#import "CommentBox.h"
 
 @interface MyTableViewController : UITableViewController
 
@@ -26,5 +27,8 @@
 - (void)favorite: (id)sender;
 - (void)showWarningAlert:(NSString *)warning;
 - (void)refreshTimelineTable;
+
+@property (strong, nonatomic) UIView *container;
+@property (strong, nonatomic) CommentBox *commentBox;
 
 @end

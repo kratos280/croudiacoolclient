@@ -46,8 +46,7 @@
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshUserInfo" object:self];
         
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Updated" message:@"Successfully Update" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
+        [self showAlertDialog:nil withMessage:@"Successfully Update" andActionTitle:@"OK"];
         
         [self.navigationController popViewControllerAnimated:YES];
     };

@@ -13,6 +13,9 @@
 		5E0D2C141C02BB7E00E7DF28 /* profile-cover-default.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E0D2C131C02BB7E00E7DF28 /* profile-cover-default.jpeg */; };
 		5E0D2C1A1C04B3E100E7DF28 /* ChangeProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D2C191C04B3E100E7DF28 /* ChangeProfileViewController.m */; };
 		5E0E87AE1C09DD54001A3A94 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E87AD1C09DD54001A3A94 /* BaseViewController.m */; };
+		5E0E87B61C142365001A3A94 /* CommentBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E0E87B51C142365001A3A94 /* CommentBox.xib */; };
+		5E0E87B91C1424A4001A3A94 /* CommentBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E87B81C1424A4001A3A94 /* CommentBox.m */; };
+		5E0E87BB1C1425F5001A3A94 /* Get Image-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0E87BA1C1425F5001A3A94 /* Get Image-32.png */; };
 		5E4D4E821C09B1A000936FB5 /* Edit Image-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4D4E7F1C09B1A000936FB5 /* Edit Image-26.png */; };
 		5E4D4E831C09B1A000936FB5 /* Edit Image-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4D4E801C09B1A000936FB5 /* Edit Image-32.png */; };
 		5E4D4E841C09B1A000936FB5 /* Remove Image-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4D4E811C09B1A000936FB5 /* Remove Image-32.png */; };
@@ -50,7 +53,6 @@
 		5EFB1CED1B64CEFC00E2232C /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB1CEC1B64CEFC00E2232C /* CustomButton.m */; };
 		5EFB1D011B6E02C900E2232C /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB1D001B6E02C900E2232C /* Helper.m */; };
 		5EFB1D0C1B6E27AB00E2232C /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB1D0B1B6E27AB00E2232C /* UserInfoViewController.m */; };
-		5EFB1D0F1B6FAF9B00E2232C /* MyUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB1D0E1B6FAF9B00E2232C /* MyUserInfoViewController.m */; };
 		5EFB1D121B7F874E00E2232C /* PostStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB1D111B7F874E00E2232C /* PostStatusViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,10 @@
 		5E0D2C191C04B3E100E7DF28 /* ChangeProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeProfileViewController.m; sourceTree = "<group>"; };
 		5E0E87AC1C09DD54001A3A94 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		5E0E87AD1C09DD54001A3A94 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		5E0E87B51C142365001A3A94 /* CommentBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentBox.xib; sourceTree = "<group>"; };
+		5E0E87B71C1424A4001A3A94 /* CommentBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentBox.h; sourceTree = "<group>"; };
+		5E0E87B81C1424A4001A3A94 /* CommentBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentBox.m; sourceTree = "<group>"; };
+		5E0E87BA1C1425F5001A3A94 /* Get Image-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Get Image-32.png"; sourceTree = "<group>"; };
 		5E4D4E7F1C09B1A000936FB5 /* Edit Image-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit Image-26.png"; sourceTree = "<group>"; };
 		5E4D4E801C09B1A000936FB5 /* Edit Image-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit Image-32.png"; sourceTree = "<group>"; };
 		5E4D4E811C09B1A000936FB5 /* Remove Image-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Remove Image-32.png"; sourceTree = "<group>"; };
@@ -126,8 +132,6 @@
 		5EFB1D001B6E02C900E2232C /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		5EFB1D0A1B6E27AB00E2232C /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		5EFB1D0B1B6E27AB00E2232C /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
-		5EFB1D0D1B6FAF9B00E2232C /* MyUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUserInfoViewController.h; sourceTree = "<group>"; };
-		5EFB1D0E1B6FAF9B00E2232C /* MyUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUserInfoViewController.m; sourceTree = "<group>"; };
 		5EFB1D101B7F874E00E2232C /* PostStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostStatusViewController.h; sourceTree = "<group>"; };
 		5EFB1D111B7F874E00E2232C /* PostStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostStatusViewController.m; sourceTree = "<group>"; };
 		9AD6F276775615DC4873144E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -196,8 +200,6 @@
 				5EE5242A1B5BD79A0094592D /* MyTableViewController.m */,
 				5EFB1D0A1B6E27AB00E2232C /* UserInfoViewController.h */,
 				5EFB1D0B1B6E27AB00E2232C /* UserInfoViewController.m */,
-				5EFB1D0D1B6FAF9B00E2232C /* MyUserInfoViewController.h */,
-				5EFB1D0E1B6FAF9B00E2232C /* MyUserInfoViewController.m */,
 				5EFB1D101B7F874E00E2232C /* PostStatusViewController.h */,
 				5EFB1D111B7F874E00E2232C /* PostStatusViewController.m */,
 				5E5E21D71BDB78B000E74396 /* LeftMenuViewController.h */,
@@ -274,6 +276,7 @@
 			children = (
 				5E5E21DE1BDC7A1A00E74396 /* Star-24.png */,
 				5E0D2C131C02BB7E00E7DF28 /* profile-cover-default.jpeg */,
+				5E0E87BA1C1425F5001A3A94 /* Get Image-32.png */,
 				5EE5240C1B527EC40094592D /* Favorite.png */,
 				5E5E21E21BDC7B1300E74396 /* Home-26.png */,
 				5E5E21E31BDC7B1300E74396 /* Home-32.png */,
@@ -296,10 +299,13 @@
 				5EE5241A1B5AB98F0094592D /* PostCell.xib */,
 				5EE524221B5B75E20094592D /* Main.storyboard */,
 				5EE5241C1B5ABB440094592D /* PostCell.h */,
+				5E0E87B71C1424A4001A3A94 /* CommentBox.h */,
+				5E0E87B81C1424A4001A3A94 /* CommentBox.m */,
 				5EE5241D1B5ABB440094592D /* PostCell.m */,
 				5EFB1CEB1B64CEFC00E2232C /* CustomButton.h */,
 				5EFB1CEC1B64CEFC00E2232C /* CustomButton.m */,
 				5E5E21D51BD6839900E74396 /* Login.storyboard */,
+				5E0E87B51C142365001A3A94 /* CommentBox.xib */,
 			);
 			name = InterfaceBuilders;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0E87BB1C1425F5001A3A94 /* Get Image-32.png in Resources */,
 				5E5E21DD1BDBDE5F00E74396 /* menu@2x.png in Resources */,
 				5EE5241B1B5AB98F0094592D /* PostCell.xib in Resources */,
 				5EE5240D1B527EC40094592D /* Favorite.png in Resources */,
@@ -404,6 +411,7 @@
 				5E5E21E11BDC7A9000E74396 /* Star-32.png in Resources */,
 				5E4D4E841C09B1A000936FB5 /* Remove Image-32.png in Resources */,
 				5E5E21DF1BDC7A1A00E74396 /* Star-24.png in Resources */,
+				5E0E87B61C142365001A3A94 /* CommentBox.xib in Resources */,
 				5EE7E1371B974D2100CCC567 /* delete-32.png in Resources */,
 				5E5E21DC1BDBDE5F00E74396 /* menu.png in Resources */,
 				5E5E21D61BD6839900E74396 /* Login.storyboard in Resources */,
@@ -489,9 +497,9 @@
 				5E5E21E81BDC7C3E00E74396 /* HomeTimelineViewController.m in Sources */,
 				5EFB1D121B7F874E00E2232C /* PostStatusViewController.m in Sources */,
 				5EE524211B5B6FE10094592D /* PostDetailViewController.m in Sources */,
+				5E0E87B91C1424A4001A3A94 /* CommentBox.m in Sources */,
 				5E0D2C111BFA22AC00E7DF28 /* Account.m in Sources */,
 				5EE524181B5A8F380094592D /* Post.m in Sources */,
-				5EFB1D0F1B6FAF9B00E2232C /* MyUserInfoViewController.m in Sources */,
 				5E0D2C0D1BE60D3700E7DF28 /* CroudiaHTTPClient.m in Sources */,
 				5EE5241E1B5ABB440094592D /* PostCell.m in Sources */,
 				5E5E21D91BDB78B000E74396 /* LeftMenuViewController.m in Sources */,

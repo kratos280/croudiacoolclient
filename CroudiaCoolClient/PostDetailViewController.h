@@ -11,15 +11,15 @@
 #import "CroudiaHTTPClient.h"
 #import "Helper.h"
 #import "UserInfoViewController.h"
+#import "CommentBox.h"
+#import "PostCell.h"
 
-@interface PostDetailViewController : UIViewController
+@interface PostDetailViewController : BaseViewController
 
 @property (strong, nonatomic) CroudiaHTTPClient *_httpClient;
 
 @property (strong, nonatomic) Post *post;
 @property (assign, nonatomic) NSInteger postId;
-
-
 
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -27,12 +27,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *deletePostButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
+
+@property (strong, nonatomic) UIView *container;
+@property (strong, nonatomic) CommentBox *commentBox;
 
 - (IBAction)pressFavoriteButton:(id)sender;
 - (IBAction)pressFollowButton:(id)sender;
 - (IBAction)pressDeleteButton:(id)sender;
+- (IBAction)pressCommentButton:(id)sender;
 
 
 @end

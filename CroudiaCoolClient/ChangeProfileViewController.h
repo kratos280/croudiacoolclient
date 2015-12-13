@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "CroudiaHTTPClient.h"
+#import "BaseViewController.h"
 
-@interface ChangeProfileViewController : UIViewController <UITextFieldDelegate>
+@interface ChangeProfileViewController : BaseViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) User *user;
 

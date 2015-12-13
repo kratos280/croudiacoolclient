@@ -20,7 +20,6 @@
     [super viewDidLoad];
 
     self._httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
-    
     void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
     {
         [self didReceiveStatusDetail:responseObject];
@@ -30,8 +29,9 @@
         NSLog(@"%@", error);
     };
     NSString *apiResourcePath = [NSString stringWithFormat:@"2/statuses/show/%d.json", self.postId];
-    
     [self._httpClient get:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCloseCommentBox:) name:@"closeCommentBox" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,6 +119,32 @@
     };
     
     [self._httpClient post:apiResourcePath parameters:nil successCallback:successCallback failureCallback:failureCallback];
+}
+
+- (IBAction)pressCommentButton:(id)sender {
+    // Show Comment Box Popup
+    self.container.transform = CGAffineTransformMakeScale(0.01, 0.01);
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent  animations:^{
+        self.container.transform = CGAffineTransformIdentity;
+        [self showCommentBoxPopUp:self.postId];
+    } completion:^(BOOL finished){
+        // do something once the animation finishes, put it here
+    }];
+}
+
+-(void)showCommentBoxPopUp:(NSInteger)statusId {
+    CommentBox *commentBoxView = [CommentBox loadFromXib];
+    self.commentBox = commentBoxView;
+    [self.commentBox setProperties:self toStatus:statusId];
+    self.commentBox.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 60);
+    
+    self.container  = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:self.container];
+    [self.container addSubview:commentBoxView];
+}
+
+- (void)didCloseCommentBox:(NSNotification *)notification {
+    [self.container removeFromSuperview];
 }
 
 - (void)tapProfileImage:(id)sender {

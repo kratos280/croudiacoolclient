@@ -55,6 +55,9 @@
     }
     self.refreshControl = refreshControl;
     
+    // Notification center
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCloseCommentBox:) name:@"closeCommentBox" object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,11 +96,15 @@
 }
 
 - (void)showWarningAlert:(NSString *)warning {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:warning delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:warning preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alertController addAction:defaultAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
-// TODO: Add delete confirm dialog 
+// TODO: Add delete confirm dialog
 - (void)deletePost:(id)sender {
     CustomButton *deleteButton = (CustomButton *)sender;
     NSString *apiResourcePath = [NSString stringWithFormat:@"2/statuses/destroy/%d.json", deleteButton.postId];
@@ -117,6 +124,37 @@
 
 - (void)refreshTimelineTable {
     [self.tableView reloadData];
+}
+
+#pragma mark Comment Box
+
+- (void)pressCommentButton:(id)sender {
+    CustomButton *commentButton = (CustomButton *)sender;
+    
+    // Show Comment Box Popup
+    self.container.transform = CGAffineTransformMakeScale(0.01, 0.01);
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent  animations:^{
+        self.container.transform = CGAffineTransformIdentity;
+        [self showCommentBoxPopUp:commentButton.postId];
+    } completion:^(BOOL finished){
+        // do something once the animation finishes, put it here
+    }];
+}
+
+-(void)showCommentBoxPopUp:(NSInteger)statusId {
+    CommentBox *commentBoxView = [CommentBox loadFromXib];
+    self.commentBox = commentBoxView;
+    [self.commentBox setProperties:self toStatus:statusId];
+    self.commentBox.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 - 100);
+    // TODO: show comment box near clicked position
+    
+    self.container  = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:self.container];
+    [self.container addSubview:commentBoxView];
+}
+
+- (void)didCloseCommentBox:(NSNotification *)notification {
+    [self.container removeFromSuperview];
 }
 
 #pragma mark - Table view data source
@@ -184,6 +222,11 @@
     }
     
     [favoriteButton addTarget:self action:@selector(favorite:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CustomButton *commentButton = (CustomButton *)[cell viewWithTag:102];
+    commentButton.postId = post.id;
+    [commentButton addTarget:self action:@selector(pressCommentButton:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 

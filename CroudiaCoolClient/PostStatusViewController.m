@@ -15,6 +15,7 @@
 @implementation PostStatusViewController
 
 #define TEXTVIEW_CHARACTER_COUNT_MAX 372
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -60,7 +61,7 @@
     NSString *statusText = self.textView.text;
     if ([statusText length] == 0) {
         NSString *error = @"入力してください！";
-        [self showErrorAlert:error];
+        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK"];
         return;
     }
 
@@ -77,7 +78,7 @@
     void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
     {
         NSString *alertText = @"Post Status Fail";
-        [self showErrorAlert:alertText];
+        [self showAlertDialog:nil withMessage:alertText andActionTitle:@"OK"];
     };
     
     NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
@@ -106,11 +107,6 @@
     return YES;
 }
 
-- (void)showErrorAlert: (NSString*)error {
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"!Alert" message:error delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [errorAlert show];
-}
-
 # pragma mark Image Picker
 
 - (IBAction)removeImage:(id)sender {
@@ -130,7 +126,7 @@
 - (IBAction)takePhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSString *error = @"No Camera Available!";
-        [self showErrorAlert:error];
+        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK"];
         return;
     }
     
