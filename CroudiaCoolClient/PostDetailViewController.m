@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     self._httpClient = [CroudiaHTTPClient sharedCroudiaHTTPClient];
     void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
     {
@@ -164,13 +166,6 @@
     postObj.id = [[responseObject valueForKey:@"id"] integerValue];
     postObj.favorited = ([[responseObject valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
     
-//    NSString *createdAt = [responseObject valueForKey:@"created_at"];
-//    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
-//    [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s ZZZ"];
-//    NSDate *date = [dateFormater dateFromString:createdAt];
-//    [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s"];
-//    postObj.createdAt = [dateFormater stringFromDate:date];
-    
     NSArray *userArr = [responseObject valueForKey:@"user"];
     User *user = [[User alloc] init];
     user.id = [[userArr valueForKey:@"id"]integerValue];
@@ -186,12 +181,15 @@
     // Update View
     if ([post.user.screenName isEqualToString:SCREEN_NAME]) {
         self.deletePostButton.hidden = NO;
+        self.followButton.hidden = YES;
     } else {
         self.deletePostButton.hidden = YES;
+        self.followButton.hidden = NO;
     }
     
     self.titleLabel.text = postObj.title;
     [self.titleLabel setNumberOfLines:0];
+        [self.titleLabel sizeToFit];
     
     self.screenNameLabel.text = postObj.user.screenName;
     [self.screenNameLabel sizeToFit];
@@ -214,7 +212,7 @@
         NSArray *media = [entities valueForKey:@"media"];
         if ([[media valueForKey:@"type"] isEqualToString:@"photo"]) {
             NSString *mediaUrl = [media valueForKey:@"media_url_https"];
-            UIImageView *postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(70, 280, 150, 150)];
+            UIImageView *postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(70, 240, 130, 130)];
             postImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:mediaUrl]]];
             [self.view addSubview:postImageView];
         }
@@ -226,6 +224,42 @@
     if (postObj.favorited == YES) {
         [self.favoriteButton setTitle:@"お気に入り解除" forState:UIControlStateNormal];
         [self.favoriteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }
+    
+    // Quoted status
+    NSArray *quotedStatus = [responseObject valueForKey:@"quoted_status"];
+    if (quotedStatus) {
+        CGFloat quotedStatusYPosition = 430;
+        UIView *quotedStatusView = [[UIView alloc] initWithFrame:CGRectMake(10, quotedStatusYPosition, 300, 90)];
+        quotedStatusView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        quotedStatusView.backgroundColor = [UIColor grayColor];
+        quotedStatusView.layer.cornerRadius = 10;
+        [self.view addSubview:quotedStatusView];
+        
+        NSArray *quotedStatusUser = [quotedStatus valueForKey:@"user"];
+        UIImage *quotedStatusProfileImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[quotedStatusUser valueForKey:@"profile_image_url_https"]]]];
+        UIImageView *quotedStatusProfileImageView = [[UIImageView alloc] initWithImage:quotedStatusProfileImage];
+        quotedStatusProfileImageView.frame = CGRectMake(10, 5, 50, 50);
+        [quotedStatusView addSubview:quotedStatusProfileImageView];
+        
+        UILabel *quotedStatusScreenNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, 200, 20)];
+        quotedStatusScreenNameLabel.text = [quotedStatusUser valueForKey:@"screen_name"];
+        quotedStatusScreenNameLabel.font = [UIFont fontWithName:@"AppleGothic" size:12];
+        [quotedStatusScreenNameLabel sizeToFit];
+        [quotedStatusView addSubview:quotedStatusScreenNameLabel];
+        
+        UILabel *quotedStatusTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 10, 200, 50)];
+        quotedStatusTitleLabel.numberOfLines = 0;
+//        [quotedStatusTitleLabel sizeToFit];
+        quotedStatusTitleLabel.font = [UIFont fontWithName:@"AppleGothic" size:11];
+        quotedStatusTitleLabel.text = [quotedStatus valueForKey:@"text"];
+        [quotedStatusView addSubview:quotedStatusTitleLabel];
+                                           
+        UILabel *quotedStatusTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 100, 10)];
+        quotedStatusTimeLabel.text = [Helper getSimpleDateTimeStringWithoutTimezone:[quotedStatus valueForKey:@"created_at"]];
+        quotedStatusTimeLabel.font = [UIFont fontWithName:@"AppleGothic" size:10];
+        [quotedStatusTimeLabel sizeToFit];
+        [quotedStatusView addSubview:quotedStatusTimeLabel];
     }
     
     // User profile image Click

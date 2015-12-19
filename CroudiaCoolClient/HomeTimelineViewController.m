@@ -40,11 +40,7 @@
             post.favorited = ([[data valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
             
             NSString *createdAt = [data valueForKey:@"created_at"];
-            NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
-            [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s ZZZ"];
-            NSDate *date = [dateFormater dateFromString:createdAt];
-            [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s"];
-            post.createdAt = [dateFormater stringFromDate:date];
+            post.createdAt = [Helper getSimpleDateTimeStringWithoutTimezone:createdAt];
             
             NSArray *userArr = [data valueForKey:@"user"];
             User *user = [[User alloc] init];

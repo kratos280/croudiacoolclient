@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CroudiaHTTPClient.h"
 
-@interface CommentBox : UIView <CroudiaHTTPClientDelegate, UIImagePickerControllerDelegate>
+@interface CommentBox : UIView <UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;

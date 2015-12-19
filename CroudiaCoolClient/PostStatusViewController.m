@@ -69,8 +69,7 @@
     void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
     {
         // Show success message
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Complete" message:@"Successfully post status" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+        [self showAlertDialog:@"Post Complete" withMessage:@"Successfully post status" andActionTitle:@"OK"];
         [self dismissViewControllerAnimated:YES completion:nil];
         self.textView.text =@"";
         self.imageView.image = Nil;

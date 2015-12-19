@@ -25,4 +25,12 @@
     [button setFrame:buttonFrame];
 }
 
++ (NSString *)getSimpleDateTimeStringWithoutTimezone:(NSString *)simpleDateTime {
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s ZZZ"];
+    NSDate *date = [dateFormater dateFromString:simpleDateTime];
+    [dateFormater setDateFormat:@"E, d MMM yyyy H:m:s"];
+    return [dateFormater stringFromDate:date];
+}
+
 @end

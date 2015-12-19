@@ -14,8 +14,7 @@
 @interface Helper : NSObject
 
 + (BOOL)isConnectedInternet;
-
 + (void)resizeButtonAccordingText:(UIButton *)button plusWidth:(NSInteger)plusWidth plusHeight:(NSInteger)plusHeight;
-
++ (NSString *)getSimpleDateTimeStringWithoutTimezone:(NSString *)simpleDateTime;
 
 @end

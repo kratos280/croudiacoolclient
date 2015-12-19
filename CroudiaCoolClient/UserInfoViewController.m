@@ -21,24 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    UIView *summaryView = [[UIView alloc] init];
-//    summaryView.frame = CGRectMake(0, 420, 320, 100);
-//    [summaryView addSubview:self.countStatusLabel];
-//    [summaryView addSubview:self.countFollowLabel];
-//    [summaryView addSubview:self.countFollowerLabel];
+
 //    UIView *summaryViewButtom = [[UIView alloc] init];
 //    summaryViewButtom.backgroundColor = [UIColor grayColor];
-//    summaryViewButtom.frame = CGRectMake(0, 300, summaryView.frame.size.width, 2);
-//    [summaryView addSubview:summaryViewButtom];
-//
-//    summaryView.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:summaryView];
-
-    UIView *summaryViewButtom = [[UIView alloc] init];
-    summaryViewButtom.backgroundColor = [UIColor grayColor];
-    summaryViewButtom.frame = CGRectMake(0, 480, 320, 2);
-    [self.view addSubview:summaryViewButtom];
+//    summaryViewButtom.frame = CGRectMake(0, 480, 320, 2);
+//    [self.view addSubview:summaryViewButtom];
+    self.summaryView.hidden = YES;
     
     _updateImageApiPath = nil;
     
@@ -95,7 +83,9 @@
     _user = user;
     
     self.nameLabel.text = user.name;
+    [self.nameLabel sizeToFit];
     self.descriptionLabel.text = [user.description isKindOfClass:[NSNull class]] ? nil : user.description;
+    [self.descriptionLabel sizeToFit];
     if ([user.screenName isEqualToString:SCREEN_NAME]) {
         self.changeProfileButton.hidden = NO;
         self.changeProfileImageButton.hidden = NO;
@@ -113,8 +103,11 @@
         self.coverImageView.image = [UIImage imageNamed:@"profile-cover-default.jpeg"];
     }
     self.countStatusLabel.text = [NSString stringWithFormat:@"%d ささやき", user.statusesCount];
+    [self.countStatusLabel sizeToFit];
     self.countFollowLabel.text = [NSString stringWithFormat:@"%d フォロー", user.friendsCount];
+    [self.countFollowLabel sizeToFit];
     self.countFollowerLabel.text = [NSString stringWithFormat:@"%d フォロワー", user.followersCount];
+    [self.countFollowerLabel sizeToFit];
 }
 
 - (void)refreshUserInfo:(NSNotification *)notification {

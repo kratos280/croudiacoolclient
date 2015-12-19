@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *changeProfileButton;
 @property (weak, nonatomic) IBOutlet UIButton *changeProfileImageButton;
 @property (weak, nonatomic) IBOutlet UIButton *changeCoverImageButton;
+@property (weak, nonatomic) IBOutlet UIView *summaryView;
 
 - (IBAction)pressChangeProfileImageButton:(id)sender;
 - (IBAction)pressChangeCoverImageButton:(id)sender;
