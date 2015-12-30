@@ -46,9 +46,10 @@
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshUserInfo" object:self];
         
-        [self showAlertDialog:nil withMessage:@"Successfully Update" andActionTitle:@"OK"];
-        
-        [self.navigationController popViewControllerAnimated:YES];
+        void (^defaultActionCallback)() = ^void () {
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+        [self showAlertDialog:nil withMessage:@"Successfully Update" andActionTitle:@"OK" defaultActionCallback:defaultActionCallback];
     };
     void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
     {

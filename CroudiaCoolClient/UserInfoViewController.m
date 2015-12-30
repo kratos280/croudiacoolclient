@@ -142,7 +142,7 @@
     {
         NSLog(@"%@",error.debugDescription);
         _updateImageApiPath = nil; // Reset
-        [self showAlertDialog:nil withMessage:@"Update Fail" andActionTitle:@"OK"];
+        [self showAlertDialog:nil withMessage:@"Update Fail" andActionTitle:@"OK" defaultActionCallback:nil];
     };
     void (^constructBody)(id<AFMultipartFormData>) = ^void (id<AFMultipartFormData> formData)
     {
@@ -183,7 +183,7 @@
 - (void)takePhoto {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSString *error = @"No Camera Available!";
-        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK"];
+        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK" defaultActionCallback:nil];
         return;
     }
     

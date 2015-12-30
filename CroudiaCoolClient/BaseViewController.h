@@ -10,6 +10,6 @@
 
 @interface BaseViewController : UIViewController
 
-- (void)showAlertDialog:(NSString *)title withMessage:(NSString *)message andActionTitle:(NSString *)actionTitle;
+- (void)showAlertDialog:(NSString *)title withMessage:(NSString *)message andActionTitle:(NSString *)actionTitle defaultActionCallback:(void (^)())defaultActionCallback;
 
 @end

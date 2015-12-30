@@ -50,6 +50,8 @@
     }
     void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
     {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTimelineTable" object:self];
+        
         BOOL isFavorited = ([[responseObject valueForKey:@"favorited"]integerValue] == 0) ? NO : YES;
         NSInteger favoritedCount = [[responseObject valueForKey:@"favorited_count"] integerValue];
         
@@ -63,7 +65,7 @@
             [self.favoriteButton setTitle:@"お気に入り解除" forState:UIControlStateNormal];
             [self.favoriteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
-        self.favoriteInfoLabel.text = [NSString stringWithFormat:@"%d お気に入り", post.favoritedCount];
+        self.favoriteInfoLabel.text = [NSString stringWithFormat:@"%ld お気に入り", post.favoritedCount];
     };
     void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
     {
@@ -191,8 +193,8 @@
     [self.titleLabel setNumberOfLines:0];
         [self.titleLabel sizeToFit];
     
-    self.screenNameLabel.text = postObj.user.screenName;
-    [self.screenNameLabel sizeToFit];
+    self.userNameLabel.text = postObj.user.name;
+    [self.userNameLabel sizeToFit];
     
     self.followButton.layer.borderColor = [UIColor grayColor].CGColor;
     self.followButton.layer.borderWidth = 1.0f;
@@ -242,11 +244,11 @@
         quotedStatusProfileImageView.frame = CGRectMake(10, 5, 50, 50);
         [quotedStatusView addSubview:quotedStatusProfileImageView];
         
-        UILabel *quotedStatusScreenNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, 200, 20)];
-        quotedStatusScreenNameLabel.text = [quotedStatusUser valueForKey:@"screen_name"];
-        quotedStatusScreenNameLabel.font = [UIFont fontWithName:@"AppleGothic" size:12];
-        [quotedStatusScreenNameLabel sizeToFit];
-        [quotedStatusView addSubview:quotedStatusScreenNameLabel];
+        UILabel *quotedStatusUserNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, 200, 20)];
+        quotedStatusUserNameLabel.text = [quotedStatusUser valueForKey:@"name"];
+        quotedStatusUserNameLabel.font = [UIFont fontWithName:@"AppleGothic" size:12];
+        [quotedStatusUserNameLabel sizeToFit];
+        [quotedStatusView addSubview:quotedStatusUserNameLabel];
         
         UILabel *quotedStatusTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 10, 200, 50)];
         quotedStatusTitleLabel.numberOfLines = 0;

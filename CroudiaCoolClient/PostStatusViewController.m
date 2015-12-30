@@ -61,7 +61,7 @@
     NSString *statusText = self.textView.text;
     if ([statusText length] == 0) {
         NSString *error = @"入力してください！";
-        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK"];
+        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK" defaultActionCallback:nil];
         return;
     }
 
@@ -69,15 +69,18 @@
     void (^successCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, id responseObject)
     {
         // Show success message
-        [self showAlertDialog:@"Post Complete" withMessage:@"Successfully post status" andActionTitle:@"OK"];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        void (^defaultActionCallback)() = ^void () {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+        [self showAlertDialog:@"Post Complete" withMessage:@"Successfully post status" andActionTitle:@"OK" defaultActionCallback:defaultActionCallback];
+
         self.textView.text =@"";
         self.imageView.image = Nil;
     };
     void (^failureCallback)(NSURLSessionDataTask *, id) = ^void (NSURLSessionDataTask *task, NSError *error)
     {
         NSString *alertText = @"Post Status Fail";
-        [self showAlertDialog:nil withMessage:alertText andActionTitle:@"OK"];
+        [self showAlertDialog:nil withMessage:alertText andActionTitle:@"OK" defaultActionCallback:nil];
     };
     
     NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
@@ -125,7 +128,7 @@
 - (IBAction)takePhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSString *error = @"No Camera Available!";
-        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK"];
+        [self showAlertDialog:nil withMessage:error andActionTitle:@"OK" defaultActionCallback:nil];
         return;
     }
     

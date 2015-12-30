@@ -219,8 +219,10 @@
     if (post.favorited == YES) {
         [favoriteButton setTitle:@"お気に入り解除" forState:UIControlStateNormal];
         [favoriteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    } else {
+        [favoriteButton setTitle:@"お気に入り" forState:UIControlStateNormal];
+        [favoriteButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     }
-    
     [favoriteButton addTarget:self action:@selector(favorite:) forControlEvents:UIControlEventTouchUpInside];
     
     CustomButton *commentButton = (CustomButton *)[cell viewWithTag:102];
